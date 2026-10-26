@@ -10,6 +10,10 @@ New in this version:
   ✅ /api/alerts endpoint
   ✅ /api/model-status endpoint
   ✅ Built-in synthetic sensor (auto-starts when no real data arrives)
+  ✅ STOP always sent on critical (control.py), no automatic RUN by default
+  ✅ MQTT / control settings from environment or backend/.env
+  ✅ Sensor-offline alert — a dead sensor is never hidden behind synthetic data
+  ✅ predictions.log rotates (10 MB × 5)
 """
 
 from flask import Flask, jsonify, request
@@ -20,10 +24,33 @@ import csv
 import os
 import time
 import logging
+from logging.handlers import RotatingFileHandler
 import threading
 from collections import deque
 
 from synthetic import SyntheticSensor
+from control import ShutdownController
+
+
+# ─── .env loader ──────────────────────────────────────────────
+# KEY=VALUE lines from backend/.env; real environment variables win.
+def _load_env_file(path=os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")):
+    if not os.path.isfile(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, val = line.split("=", 1)
+            os.environ.setdefault(key.strip(), val.strip().strip('"').strip("'"))
+
+
+_load_env_file()
+
+
+def _env_bool(name, default):
+    return os.environ.get(name, str(default)).strip().lower() in ("1", "true", "yes", "on")
 
 # ✅ Real ML engine
 from predict import predict, predict_anomaly, MODELS_LOADED, check_thresholds
@@ -40,9 +67,13 @@ _lock         = threading.Lock()
 _last_real_ts = 0.0         # time.time() of last real MQTT reading
 
 # ─── Synthetic Sensor CONFIG ──────────────────────────────────
-# EDGEWATCH_SIM = auto   → synthetic data only while no real sensor data arrives (default)
-#                 always → always synthetic, real MQTT data ignored
-#                 off    → never synthetic
+# EDGEWATCH_SIM = auto     → synthetic data only until the first real reading arrives (default).
+#                            After that, a silent sensor raises a "sensor offline" alert
+#                            instead of being replaced by fake data.
+#                 fallback → synthetic data whenever real data stops for SIM_IDLE seconds
+#                            (demo setups only — hides a dead sensor)
+#                 always   → always synthetic, real MQTT data ignored
+#                 off      → never synthetic
 SIM_MODE         = os.environ.get("EDGEWATCH_SIM", "auto").lower()
 SIM_SCENARIO     = os.environ.get("EDGEWATCH_SIM_SCENARIO", "demo").lower()   # demo | normal
 SIM_INTERVAL     = float(os.environ.get("EDGEWATCH_SIM_INTERVAL", 2))         # seconds
@@ -50,28 +81,37 @@ SIM_IDLE_TIMEOUT = float(os.environ.get("EDGEWATCH_SIM_IDLE", 15))            # 
 SIM_BACKFILL     = int(os.environ.get("EDGEWATCH_SIM_BACKFILL", 1800))        # seconds of history at start
 sim_state        = {"active": False, "phase": None}
 
+# Sensor counts as offline after this many seconds without a real reading
+SENSOR_TIMEOUT   = float(os.environ.get("EDGEWATCH_SENSOR_TIMEOUT", 30))
+
 # ─── MQTT CONFIG ──────────────────────────────────────────────
-BROKER            = "broker.emqx.io"
-PORT              = 1883
-TOPIC_SENSOR      = "wired/rms/#"         # incoming sensor data
-TOPIC_CONTROL     = "wired/control"       # outgoing: 1=STOP, 0=RUN
-USERNAME          = "test"
-PASSWORD          = "test"
+# Defaults match the original setup. The public broker is NOT safe for a real
+# machine: anyone can publish fake readings or STOP/RUN commands.
+# Set your own broker in backend/.env (see .env.example).
+BROKER            = os.environ.get("MQTT_BROKER", "broker.emqx.io")
+MQTT_TLS          = _env_bool("MQTT_TLS", False)
+PORT              = int(os.environ.get("MQTT_PORT", 8883 if MQTT_TLS else 1883))
+MQTT_CA_CERT      = os.environ.get("MQTT_CA_CERT") or None   # None = system CAs
+TOPIC_SENSOR      = os.environ.get("MQTT_TOPIC_SENSOR",  "wired/rms/#")    # incoming sensor data
+TOPIC_CONTROL     = os.environ.get("MQTT_TOPIC_CONTROL", "wired/control")  # outgoing: 1=STOP, 0=RUN
+USERNAME          = os.environ.get("MQTT_USERNAME", "test")
+PASSWORD          = os.environ.get("MQTT_PASSWORD", "test")
+PUBLIC_BROKERS    = {"broker.emqx.io", "test.mosquitto.org", "broker.hivemq.com", "mqtt.eclipseprojects.io"}
 
 # Auto-shutdown config
-SHUTDOWN_COOLDOWN = 5 * 60     # 5 minutes between shutdown signals
-SHUTDOWN_ENABLED  = True       # set False to disable auto-shutdown
-_last_shutdown_ts = 0          # timestamp of last shutdown signal
-_prev_status      = "normal"   # for edge detection (only on status CHANGE)
+SHUTDOWN_ENABLED  = _env_bool("SHUTDOWN_ENABLED", True)
+SHUTDOWN_RESEND   = float(os.environ.get("SHUTDOWN_RESEND_S", 60))    # re-send STOP while still critical
+AUTO_RESUME       = _env_bool("AUTO_RESUME", False)                   # automatic RUN after recovery
+RESUME_HOLD       = float(os.environ.get("RESUME_HOLD_S", 120))       # normal this long before auto RUN
+CONTROL_TOKEN     = os.environ.get("CONTROL_TOKEN", "")               # required for POST /api/control/resume
 
 # ─── Logging Setup ────────────────────────────────────────────
-logging.basicConfig(
-    filename  = "predictions.log",
-    level     = logging.INFO,
-    format    = "%(asctime)s | %(levelname)s | %(message)s",
-    datefmt   = "%Y-%m-%d %H:%M:%S",
-)
-log = logging.getLogger(__name__)
+_log_handler = RotatingFileHandler("predictions.log", maxBytes=10 * 1024 * 1024, backupCount=5)
+_log_handler.setFormatter(logging.Formatter(
+    "%(asctime)s | %(levelname)s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S"))
+log = logging.getLogger("edgewatch")
+log.setLevel(logging.INFO)
+log.addHandler(_log_handler)
 
 
 def log_prediction(pred: dict, data: dict):
@@ -199,56 +239,33 @@ def parse_csv_rows(rows):
 
 
 # ─── MQTT Auto-Shutdown ────────────────────────────────────────
+def publish_control(payload: str, reason: str) -> bool:
+    """Publish STOP ("1") / RUN ("0"). Returns False if it could not be sent."""
+    try:
+        info = mqtt_client.publish(TOPIC_CONTROL, payload=payload, qos=1)
+        if info.rc != mqtt.MQTT_ERR_SUCCESS:
+            print(f"[MQTT] ⚠️  Control publish failed (rc={info.rc}) — will retry")
+            return False
+    except Exception as e:
+        print(f"[MQTT] Control publish error: {e}")
+        return False
+    log_mqtt_command(TOPIC_CONTROL, payload, reason)
+    print(f"[MQTT] {'🔴 STOP' if payload == '1' else '🟢 RUN'} signal sent — {reason}")
+    return True
+
+
+controller = ShutdownController(
+    publish       = publish_control,
+    enabled       = SHUTDOWN_ENABLED,
+    resend_s      = SHUTDOWN_RESEND,
+    auto_resume   = AUTO_RESUME,
+    resume_hold_s = RESUME_HOLD,
+)
+
+
 def maybe_send_shutdown(pred: dict):
-    """
-    Send STOP signal (payload=1) to TOPIC_CONTROL if:
-      - Status is CRITICAL
-      - Cooldown has passed (5 min)
-      - Status just changed TO critical (edge detection, not repeated)
-      - Motor is not already OFF
-    Send RUN signal (payload=0) when status recovers to normal.
-    """
-    global _last_shutdown_ts, _prev_status
-
-    if not SHUTDOWN_ENABLED:
-        return
-
     # Never send real STOP/RUN commands because of simulator data
-    if latest_data.get("simulated"):
-        return
-
-    current_status = pred.get("status", "normal")
-    motor_off      = pred.get("motor_off", False)
-    now            = time.time()
-    cooldown_ok    = (now - _last_shutdown_ts) >= SHUTDOWN_COOLDOWN
-
-    # ── STOP: Critical threshold crossing ─────────────────────
-    if (current_status == "critical"
-            and _prev_status != "critical"
-            and not motor_off
-            and cooldown_ok):
-
-        reason = f"fault={pred.get('fault_type')} health={pred.get('health_score')}"
-        try:
-            mqtt_client.publish(TOPIC_CONTROL, payload="1", qos=1)
-            _last_shutdown_ts = now
-            log_mqtt_command(TOPIC_CONTROL, "1", f"AUTO-STOP: {reason}")
-            print(f"[MQTT] 🔴 STOP signal sent — {reason}")
-        except Exception as e:
-            print(f"[MQTT] Shutdown publish error: {e}")
-
-    # ── RUN: Recovery from critical to normal ─────────────────
-    elif (current_status == "normal"
-            and _prev_status == "critical"
-            and not motor_off):
-        try:
-            mqtt_client.publish(TOPIC_CONTROL, payload="0", qos=1)
-            log_mqtt_command(TOPIC_CONTROL, "0", "AUTO-RUN: status recovered to normal")
-            print(f"[MQTT] 🟢 RUN signal sent — status recovered")
-        except Exception as e:
-            print(f"[MQTT] Run publish error: {e}")
-
-    _prev_status = current_status
+    controller.update(pred, simulated=bool(latest_data.get("simulated")))
 
 
 # ─── Alert Memory ─────────────────────────────────────────────
@@ -339,7 +356,9 @@ def sim_loop():
     while True:
         try:
             idle = (time.time() - _last_real_ts) >= SIM_IDLE_TIMEOUT
-            should_run = SIM_MODE == "always" or (SIM_MODE == "auto" and idle)
+            should_run = (SIM_MODE == "always"
+                          or (SIM_MODE == "auto" and _last_real_ts == 0)
+                          or (SIM_MODE == "fallback" and idle))
 
             if should_run and not sim_state["active"]:
                 print("[SIM] ▶ No real sensor data — synthetic sensor started")
@@ -368,6 +387,41 @@ def sim_loop():
         time.sleep(SIM_INTERVAL)
 
 
+# ─── Sensor Watchdog ──────────────────────────────────────────
+def sensor_age_s():
+    """Seconds since the last real reading, or None if none arrived yet."""
+    return round(time.time() - _last_real_ts, 1) if _last_real_ts else None
+
+
+def watchdog_loop():
+    """Raise an alert when a sensor that was sending data goes silent."""
+    offline = False
+    while True:
+        try:
+            age = sensor_age_s()
+            if age is not None and age >= SENSOR_TIMEOUT and not offline:
+                offline = True
+                print(f"[WATCHDOG] 🔴 No sensor data for {age:.0f}s")
+                with _lock:
+                    store_alerts([{
+                        "type":     "sensor_offline",
+                        "message":  f"No data from sensor for {age:.0f} s — check sensor power, wiring and MQTT link",
+                        "severity": "critical",
+                    }])
+            elif offline and age is not None and age < SENSOR_TIMEOUT:
+                offline = False
+                print("[WATCHDOG] 🟢 Sensor back online")
+                with _lock:
+                    store_alerts([{
+                        "type":     "sensor_online",
+                        "message":  "Sensor data is arriving again",
+                        "severity": "normal",
+                    }])
+        except Exception as e:
+            print(f"[WATCHDOG] Error: {e}")
+        time.sleep(2)
+
+
 def save_to_csv(data):
     file_exists = os.path.isfile(CSV_FILE)
     has_header  = False
@@ -387,7 +441,10 @@ def save_to_csv(data):
 def get_live_data():
     if not latest_data:
         return jsonify({"error": "No data yet"}), 503
-    return jsonify(latest_data)
+    if latest_data.get("simulated"):
+        return jsonify({**latest_data, "stale": False, "age_s": None})
+    age = sensor_age_s()
+    return jsonify({**latest_data, "stale": age is not None and age >= SENSOR_TIMEOUT, "age_s": age})
 
 
 @app.route("/api/history")
@@ -564,7 +621,27 @@ def model_status():
         "trend":           latest_pred.get("trend")         if latest_pred else None,
         "shutdown_enabled":SHUTDOWN_ENABLED,
         "control_topic":   TOPIC_CONTROL,
+        "control":         controller.state(),
     })
+
+
+@app.route("/api/control/resume", methods=["POST"])
+def control_resume():
+    """
+    Operator sends RUN after a STOP.
+    Needs header  X-Control-Token: <CONTROL_TOKEN>  — disabled if CONTROL_TOKEN is not set.
+    Refused while the machine is still critical.
+    """
+    if not CONTROL_TOKEN:
+        return jsonify({"error": "Manual resume disabled — set CONTROL_TOKEN in backend/.env"}), 403
+    if request.headers.get("X-Control-Token") != CONTROL_TOKEN:
+        return jsonify({"error": "Invalid control token"}), 401
+    if latest_pred.get("status") == "critical" and not latest_pred.get("motor_off"):
+        return jsonify({"error": "Machine is still critical — not resuming"}), 409
+    who = (request.get_json(silent=True) or {}).get("operator", "unknown")
+    if not controller.resume(f"MANUAL-RUN by {who}"):
+        return jsonify({"error": "Could not publish RUN — MQTT not connected"}), 503
+    return jsonify({"ok": True, "control": controller.state()})
 
 
 @app.route("/api/health-check")
@@ -575,6 +652,16 @@ def health_check():
         "models_loaded": MODELS_LOADED,
         "last_ts":       latest_data.get("timestamp"),
         "simulation":    sim_state,
+        "sensor": {
+            "last_real_age_s": sensor_age_s(),
+            "offline":         (sensor_age_s() or 0) >= SENSOR_TIMEOUT,
+            "timeout_s":       SENSOR_TIMEOUT,
+        },
+        "mqtt": {
+            "connected": mqtt_client.is_connected(),
+            "broker":    BROKER,
+            "tls":       MQTT_TLS,
+        },
     })
 
 
@@ -593,6 +680,8 @@ def simulation_status():
 # ─── MQTT Client ──────────────────────────────────────────────
 mqtt_client = mqtt.Client()
 mqtt_client.username_pw_set(USERNAME, PASSWORD)
+if MQTT_TLS:
+    mqtt_client.tls_set(ca_certs=MQTT_CA_CERT)
 mqtt_client.on_connect = on_connect
 mqtt_client.on_message = on_message
 # connect_async + loop_start keeps retrying in the background, so the
@@ -602,11 +691,17 @@ mqtt_client.loop_start()
 
 migrate_old_csv()
 
-if SIM_MODE in ("auto", "always"):
+if SIM_MODE in ("auto", "fallback", "always"):
     threading.Thread(target=sim_loop, daemon=True, name="synthetic-sensor").start()
+threading.Thread(target=watchdog_loop, daemon=True, name="sensor-watchdog").start()
 
 print(f"[APP] ML Mode : {'✅ REAL MODEL' if MODELS_LOADED else '⚠️  FALLBACK RULES'}")
-print(f"[APP] Shutdown: {'✅ ENABLED' if SHUTDOWN_ENABLED else '❌ DISABLED'} → topic={TOPIC_CONTROL}")
+print(f"[APP] MQTT    : {BROKER}:{PORT} {'(TLS)' if MQTT_TLS else '(no TLS)'}")
+if BROKER in PUBLIC_BROKERS or not MQTT_TLS:
+    print("[APP] ⚠️  INSECURE MQTT — public broker and/or no TLS. Anyone can send fake "
+          "readings or STOP/RUN commands. Configure backend/.env before real use.")
+print(f"[APP] Shutdown: {'✅ ENABLED' if SHUTDOWN_ENABLED else '❌ DISABLED'} → topic={TOPIC_CONTROL}"
+      f" | auto-resume={'ON' if AUTO_RESUME else 'OFF'} | manual resume={'ON' if CONTROL_TOKEN else 'OFF'}")
 print(f"[APP] Log file: predictions.log")
 
 # ─────────────────────────────────────────────────────────────

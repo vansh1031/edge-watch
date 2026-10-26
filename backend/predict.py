@@ -20,8 +20,19 @@ New in this version:
 import pickle
 import os
 import time
+import warnings
 import numpy as np
 from collections import deque
+
+# On the Jetson every prediction printed this sklearn UserWarning and it
+# filled backend-error.log with 7.5 GB. sklearn emits it when the process
+# has no warning filters installed; installing this filter removes both the
+# trigger and the message.
+warnings.filterwarnings(
+    "ignore",
+    message=r"`sklearn\.utils\.parallel\.delayed` should be used",
+    category=UserWarning,
+)
 
 # ─── Config ───────────────────────────────────────────────────
 MODEL_DIR = os.path.join(os.path.dirname(__file__), "ml_models")
@@ -83,6 +94,11 @@ try:
     _rf        = _load("random_forest.pkl")
     _rul       = _load("rul_params.pkl")
     _fault_map = _load("fault_map.pkl")
+    # Trained with n_jobs=-1. For one reading at a time that only adds
+    # thread start-up cost (~3x slower). Predict single-threaded.
+    for _m in (_iso, _rf):
+        if hasattr(_m, "n_jobs"):
+            _m.n_jobs = 1
     MODELS_LOADED = True
     print("[ML] ✅ All models loaded successfully.")
 except Exception as e:

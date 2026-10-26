@@ -168,13 +168,27 @@ npm run dev
 Open:
 http://localhost:8081
 
-🔌 MQTT Configuration
+🔌 MQTT & Safety Configuration
 
-In backend:broker = "YOUR_BROKER_URL"
-port = 1883
-topic = "YOUR_TOPIC"
-username = "YOUR_USER"
-password = "YOUR_PASS"
+All settings come from environment variables or `backend/.env`:
+
+```bash
+cp backend/.env.example backend/.env   # then edit it — never commit .env
+```
+
+- **Use your own broker with TLS + password.** Defaults still point at the public
+  `broker.emqx.io` so old setups keep working, but anyone can publish fake readings or
+  STOP/RUN commands there. The backend prints a warning at startup while this is the case.
+- **STOP** (`1` on `wired/control`) is sent on the first critical reading and re-sent every
+  `SHUTDOWN_RESEND_S` while the machine stays critical.
+- **RUN is never sent automatically** unless `AUTO_RESUME=true` (then only after
+  `RESUME_HOLD_S` of normal status). Manual resume:
+  `curl -X POST -H "X-Control-Token: $CONTROL_TOKEN" http://<jetson>:5005/api/control/resume`
+- **Sensor offline:** if no real reading arrives for `EDGEWATCH_SENSOR_TIMEOUT` s, a critical
+  alert is raised. With `EDGEWATCH_SIM=auto` (default) synthetic data only runs until the first
+  real reading — it never replaces a sensor that went silent (`fallback` mode does, for demos).
+
+Run backend tests: `cd backend && python -m pytest tests`
 
 
 📊 API Endpoints

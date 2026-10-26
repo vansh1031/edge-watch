@@ -23,23 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 
-
-
 # Python
-
 venv/
-
 .venv/
-
 env/
-
 __pycache__/
-
 *.pyc
-
 predictions.log
-
 .env
-
 backend/site-packages/
-backend/site-packages/
+predictions.log.*
