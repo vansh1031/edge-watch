@@ -14,9 +14,11 @@ New in this version:
   ✅ MQTT / control settings from environment or backend/.env
   ✅ Sensor-offline alert — a dead sensor is never hidden behind synthetic data
   ✅ predictions.log rotates (10 MB × 5)
+  ✅ SQLite storage (db.py): readings, alerts with acknowledgement, STOP/RUN audit
+  ✅ Live stream: GET /api/stream (Server-Sent Events)
 """
 
-from flask import Flask, jsonify, request
+from flask import Flask, Response, jsonify, request, stream_with_context
 from flask_cors import CORS
 import paho.mqtt.client as mqtt
 import json
@@ -24,12 +26,14 @@ import csv
 import os
 import time
 import logging
+import queue
 from logging.handlers import RotatingFileHandler
 import threading
 from collections import deque
 
 from synthetic import SyntheticSensor
 from control import ShutdownController
+from db import Store
 
 
 # ─── .env loader ──────────────────────────────────────────────
@@ -61,7 +65,6 @@ CORS(app, origins="*", supports_credentials=True)
 # ─── State ────────────────────────────────────────────────────
 latest_data   = {}
 latest_pred   = {}
-recent_alerts = []          # in-memory alert log (last 50)
 recent_rows   = deque(maxlen=2000)   # all readings since startup (real + synthetic)
 _lock         = threading.Lock()
 _last_real_ts = 0.0         # time.time() of last real MQTT reading
@@ -83,6 +86,12 @@ sim_state        = {"active": False, "phase": None}
 
 # Sensor counts as offline after this many seconds without a real reading
 SENSOR_TIMEOUT   = float(os.environ.get("EDGEWATCH_SENSOR_TIMEOUT", 30))
+
+# ─── Storage ──────────────────────────────────────────────────
+BACKEND_DIR      = os.path.dirname(os.path.abspath(__file__))
+DB_PATH          = os.environ.get("EDGEWATCH_DB", os.path.join(BACKEND_DIR, "edgewatch.db"))
+RETENTION_DAYS   = float(os.environ.get("EDGEWATCH_RETENTION_DAYS", 365))   # 0 = keep forever
+store            = Store(DB_PATH)
 
 # ─── MQTT CONFIG ──────────────────────────────────────────────
 # Defaults match the original setup. The public broker is NOT safe for a real
@@ -149,7 +158,9 @@ def log_mqtt_command(topic: str, payload: str, reason: str):
 
 
 # ─── CSV Config ───────────────────────────────────────────────
-CSV_FILE    = "sensor_data.csv"
+# sensor_data.csv is no longer written. It is imported into SQLite once at
+# startup and kept as a backup. Export: GET /api/history/export.csv
+CSV_FILE    = os.path.join(BACKEND_DIR, "sensor_data.csv")
 CSV_COLUMNS = [
     "timestamp", "seq", "key",
     "aRMSx", "aRMSy", "aRMSz",
@@ -221,21 +232,35 @@ def safe_float(val, default=0.0):
         return default
 
 
-def parse_csv_rows(rows):
-    result = []
-    for row in rows:
-        converted = {}
-        for k, v in row.items():
-            v = v.strip() if isinstance(v, str) else v
+# ─── Live Event Stream (Server-Sent Events) ───────────────────
+class Broadcaster:
+    """Fan-out of events to every open /api/stream connection."""
+    def __init__(self):
+        self._subs = set()
+        self._lock = threading.Lock()
+
+    def subscribe(self) -> queue.Queue:
+        q = queue.Queue(maxsize=200)
+        with self._lock:
+            self._subs.add(q)
+        return q
+
+    def unsubscribe(self, q):
+        with self._lock:
+            self._subs.discard(q)
+
+    def publish(self, event: str, data):
+        msg = f"event: {event}\ndata: {json.dumps(data)}\n\n"
+        with self._lock:
+            subs = list(self._subs)
+        for q in subs:
             try:
-                converted[k] = int(v)
-            except (ValueError, TypeError):
-                try:
-                    converted[k] = float(v)
-                except (ValueError, TypeError):
-                    converted[k] = v
-        result.append(converted)
-    return result
+                q.put_nowait(msg)
+            except queue.Full:
+                pass   # slow client — it will catch up from the next heartbeat
+
+
+events = Broadcaster()
 
 
 # ─── MQTT Auto-Shutdown ────────────────────────────────────────
@@ -250,6 +275,7 @@ def publish_control(payload: str, reason: str) -> bool:
         print(f"[MQTT] Control publish error: {e}")
         return False
     log_mqtt_command(TOPIC_CONTROL, payload, reason)
+    store.add_command(payload, reason, TOPIC_CONTROL)
     print(f"[MQTT] {'🔴 STOP' if payload == '1' else '🟢 RUN'} signal sent — {reason}")
     return True
 
@@ -268,23 +294,15 @@ def maybe_send_shutdown(pred: dict):
     controller.update(pred, simulated=bool(latest_data.get("simulated")))
 
 
-# ─── Alert Memory ─────────────────────────────────────────────
-def store_alerts(alerts: list):
-    """Keep last 50 alerts in memory for /api/alerts endpoint."""
-    global recent_alerts
-    now_ms = int(time.time() * 1000)
+# ─── Alerts ───────────────────────────────────────────────────
+def store_alerts(alerts: list, simulated: bool = False):
+    """Save alerts to SQLite (repeats within 60 s are skipped) and push them live."""
     for a in alerts:
-        if "timestamp" not in a:
-            a["timestamp"] = now_ms
-        # Skip repeats of the same alert within 60 s (sensor reports every few seconds)
-        if any(r["type"] == a.get("type") and r["severity"] == a.get("severity")
-               and a["timestamp"] - r["timestamp"] < 60_000 for r in recent_alerts):
-            continue
-        a["id"] = f"{a.get('type')}-{a['timestamp']}"
-        recent_alerts.append(a)
-        log_alert(a)
-    # Keep only last 50
-    recent_alerts = recent_alerts[-50:]
+        a.setdefault("machine", latest_data.get("mac"))
+        stored = store.add_alert(a, simulated=simulated)
+        if stored:
+            log_alert(stored)
+            events.publish("alert", stored)
 
 
 # ─── MQTT Callbacks ───────────────────────────────────────────
@@ -332,7 +350,7 @@ def process_reading(payload: dict, persist: bool = True, verbose: bool = True):
 
         # Store alerts if any
         if latest_pred.get("alerts"):
-            store_alerts(latest_pred["alerts"])
+            store_alerts(latest_pred["alerts"], simulated=bool(payload.get("simulated")))
 
         # Auto-shutdown check
         maybe_send_shutdown(latest_pred)
@@ -343,9 +361,12 @@ def process_reading(payload: dict, persist: bool = True, verbose: bool = True):
 
         recent_rows.append({**latest_data, "health_score": latest_pred.get("health_score")})
 
-        # Synthetic readings are kept in memory only, so sensor_data.csv stays real data
+        # Synthetic readings are kept in memory only, so the database stays real data
         if persist:
-            save_to_csv(latest_data)
+            store.add_reading(latest_data)
+
+        events.publish("reading", live_payload())
+        events.publish("prediction", prediction_payload())
 
 
 # ─── Synthetic Sensor Loop ────────────────────────────────────
@@ -412,9 +433,15 @@ def sensor_levels(data: dict) -> dict:
 
 def watchdog_loop():
     """Raise an alert when a sensor that was sending data goes silent."""
-    offline = False
+    offline    = False
+    next_prune = 0.0
     while True:
         try:
+            if RETENTION_DAYS > 0 and time.time() >= next_prune:
+                next_prune = time.time() + 3600
+                removed = store.prune(RETENTION_DAYS)
+                if removed:
+                    print(f"[DB] Pruned {removed} readings older than {RETENTION_DAYS:g} days")
             age = sensor_age_s()
             if age is not None and age >= SENSOR_TIMEOUT and not offline:
                 offline = True
@@ -439,52 +466,147 @@ def watchdog_loop():
         time.sleep(2)
 
 
-def save_to_csv(data):
-    file_exists = os.path.isfile(CSV_FILE)
-    has_header  = False
-    if file_exists:
-        with open(CSV_FILE, "r") as f:
-            has_header = f.readline().strip().startswith("timestamp")
-    with open(CSV_FILE, mode="a", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=CSV_COLUMNS, extrasaction="ignore")
-        if not has_header:
-            writer.writeheader()
-        writer.writerow(data)
-
-
 # ─── Routes ───────────────────────────────────────────────────
+
+def live_payload() -> dict:
+    return {**latest_data, **data_freshness(), "levels": sensor_levels(latest_data)}
+
+
+def prediction_payload() -> dict:
+    result = latest_pred
+    return {
+        "failure_risk": result["failure_risk"],
+        "rul_hours":    result["rul_hours"],
+        "status":       result["status"],
+        "fault_type":   result["fault_type"],
+        "confidence":   result["confidence"],
+        "health_score": result["health_score"],
+        "motor_off":    result.get("motor_off", False),
+        "trend":        result.get("trend", 0.0),
+        **data_freshness(),
+    }
+
+
+def control_payload() -> dict:
+    return {
+        **controller.state(),
+        "manual_resume":   bool(CONTROL_TOKEN),
+        "mqtt_connected":  mqtt_client.is_connected(),
+        "machine_status":  latest_pred.get("status") if latest_pred else None,
+        "motor_off":       latest_pred.get("motor_off") if latest_pred else None,
+        "control_topic":   TOPIC_CONTROL,
+    }
+
+
+def status_payload() -> dict:
+    """Heartbeat for the stream: freshness changes even when no reading arrives."""
+    return {"has_data": bool(latest_data), **(data_freshness() if latest_data else {}),
+            "control": control_payload()}
+
 
 @app.route("/api/live-data")
 def get_live_data():
     if not latest_data:
         return jsonify({"error": "No data yet"}), 503
-    return jsonify({**latest_data, **data_freshness(), "levels": sensor_levels(latest_data)})
+    return jsonify(live_payload())
+
+
+@app.route("/api/stream")
+def stream():
+    """
+    Server-Sent Events. Event types:
+      reading    → same body as /api/live-data
+      prediction → same body as /api/prediction
+      alert      → a newly stored alert
+      status     → every 2 s: has_data, stale/age_s, control state
+    """
+    q = events.subscribe()
+
+    def gen():
+        try:
+            yield "retry: 3000\n\n"
+            yield f"event: status\ndata: {json.dumps(status_payload())}\n\n"
+            if latest_data:
+                yield f"event: reading\ndata: {json.dumps(live_payload())}\n\n"
+                yield f"event: prediction\ndata: {json.dumps(prediction_payload())}\n\n"
+            # Heartbeat every 2 s even while readings keep arriving — it carries
+            # the control state (STOP held) and the sensor age
+            next_status = time.time() + 2
+            while True:
+                try:
+                    yield q.get(timeout=max(0.0, next_status - time.time()))
+                except queue.Empty:
+                    pass
+                if time.time() >= next_status:
+                    next_status = time.time() + 2
+                    yield f"event: status\ndata: {json.dumps(status_payload())}\n\n"
+        finally:
+            events.unsubscribe(q)
+
+    return Response(stream_with_context(gen()), mimetype="text/event-stream",
+                    headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
 @app.route("/api/history")
 def get_history():
+    """
+    Chart data. ?range=1m|5m|1h|all &limit=N
+    Long ranges are thinned evenly to `limit` points (newest point always included).
+    """
     try:
         range_param = request.args.get("range", "all")
         limit       = int(request.args.get("limit", 1000))
-        try:
-            with open(CSV_FILE, "r") as file:
-                reader = list(csv.DictReader(file))
-        except FileNotFoundError:
-            reader = []
-        result = parse_csv_rows(reader)
-        # Add in-memory synthetic readings (real ones are already in the CSV)
-        result += [dict(r) for r in list(recent_rows) if r.get("simulated")]
-        # Some old CSV rows have a blank/garbled timestamp — skip them
-        result = [r for r in result if isinstance(r.get("timestamp"), (int, float))]
-        result.sort(key=lambda r: r["timestamp"])
-        if range_param != "all":
-            now_ms    = int(time.time() * 1000)
-            range_map = {"1m": 60_000, "5m": 300_000, "1h": 3_600_000}
-            cutoff    = now_ms - range_map.get(range_param, 300_000)
-            result    = [r for r in result if r.get("timestamp", 0) >= cutoff]
-        return jsonify(result[-limit:])
+        range_map   = {"1m": 60_000, "5m": 300_000, "1h": 3_600_000}
+        now_ms      = int(time.time() * 1000)
+        since       = now_ms - range_map.get(range_param, 300_000) if range_param != "all" else None
+        result      = store.history_range(since, limit)
+        # Demo mode: synthetic readings live in memory only
+        sim = [dict(r) for r in list(recent_rows) if r.get("simulated") and (since is None or r["timestamp"] >= since)]
+        if sim:
+            result = sorted(result + sim, key=lambda r: r["timestamp"])[-limit:]
+        return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+def _int_arg(name, default=None):
+    val = request.args.get(name)
+    try:
+        return int(val) if val not in (None, "") else default
+    except ValueError:
+        return default
+
+
+@app.route("/api/history/search")
+def history_search():
+    """
+    History page. ?start_ms=&end_ms=&q=&page=1&limit=20
+    Returns { data: [...newest first], total, page, limit }. Real readings only.
+    """
+    rows, total = store.history_page(
+        start_ms = _int_arg("start_ms"),
+        end_ms   = _int_arg("end_ms"),
+        q        = request.args.get("q", "").strip(),
+        page     = max(1, _int_arg("page", 1)),
+        limit    = min(max(1, _int_arg("limit", 20)), 500),
+    )
+    return jsonify({"data": rows, "total": total, "page": max(1, _int_arg("page", 1)),
+                    "limit": min(max(1, _int_arg("limit", 20)), 500)})
+
+
+@app.route("/api/history/export.csv")
+def history_export():
+    """Download readings as CSV (same columns as the old sensor_data.csv). ?start_ms=&end_ms="""
+    rows, _ = store.history_page(start_ms=_int_arg("start_ms"), end_ms=_int_arg("end_ms"),
+                                 page=1, limit=10**9)
+    def gen():
+        cols = ["timestamp", "seq", "aRMSx", "aRMSy", "aRMSz", "vRMSx", "vRMSy", "vRMSz",
+                "temperature", "aucausticRMS", "extra", "mac"]
+        yield ",".join(cols) + "\n"
+        for r in reversed(rows):
+            yield ",".join("" if r.get(c) is None else str(r.get(c)) for c in cols) + "\n"
+    return Response(gen(), mimetype="text/csv",
+                    headers={"Content-Disposition": "attachment; filename=edgewatch_readings.csv"})
 
 
 @app.route("/api/prediction")
@@ -501,19 +623,7 @@ def get_prediction():
         # No reading yet — say so instead of inventing a healthy machine
         return jsonify({"error": "No data yet"}), 503
 
-    result = latest_pred if latest_pred else predict(latest_data)
-
-    return jsonify({
-        "failure_risk": result["failure_risk"],
-        "rul_hours":    result["rul_hours"],
-        "status":       result["status"],
-        "fault_type":   result["fault_type"],
-        "confidence":   result["confidence"],
-        "health_score": result["health_score"],   # ✅ NOW INCLUDED
-        "motor_off":    result.get("motor_off", False),
-        "trend":        result.get("trend", 0.0),
-        **data_freshness(),
-    })
+    return jsonify(prediction_payload())
 
 
 @app.route("/api/anomaly")
@@ -534,11 +644,25 @@ def get_anomaly():
 @app.route("/api/alerts")
 def get_alerts():
     """
-    ✅ New endpoint — returns recent threshold alerts.
-    Query: ?limit=N (default 20)
+    Recent alerts, newest first.
+    Query: ?limit=N (default 20) &unacked=1 (only unacknowledged warnings/criticals)
     """
-    limit = int(request.args.get("limit", 20))
-    return jsonify(recent_alerts[-limit:])
+    limit = min(_int_arg("limit", 20), 500)
+    return jsonify(store.alerts(limit, unacked_only=request.args.get("unacked") == "1"))
+
+
+@app.route("/api/alerts/<int:alert_id>/ack", methods=["POST"])
+def ack_alert(alert_id):
+    """Acknowledge an alert. Body: {"operator": "name"}"""
+    who = str((request.get_json(silent=True) or {}).get("operator", "")).strip()
+    if not who:
+        return jsonify({"error": "operator name required"}), 400
+    acked = store.ack_alert(alert_id, who[:60])
+    if not acked:
+        return jsonify({"error": "Alert not found or already acknowledged"}), 404
+    log.info(f"ALERT_ACK | id={alert_id} | by={who}")
+    events.publish("alert_ack", acked)
+    return jsonify(acked)
 
 
 @app.route("/api/forecast")
@@ -547,11 +671,7 @@ def get_forecast():
     if len(snapshot) >= 2:
         rows = snapshot[-30:]
     else:
-        try:
-            with open(CSV_FILE, "r") as file:
-                rows = list(csv.DictReader(file))[-30:]
-        except FileNotFoundError:
-            rows = []
+        rows = store.latest_readings(30)
 
     def make_series(rows, key):
         actual = [
@@ -637,14 +757,19 @@ def model_status():
 @app.route("/api/control/status")
 def control_status():
     """What the dashboard control panel shows."""
-    return jsonify({
-        **controller.state(),
-        "manual_resume":   bool(CONTROL_TOKEN),
-        "mqtt_connected":  mqtt_client.is_connected(),
-        "machine_status":  latest_pred.get("status") if latest_pred else None,
-        "motor_off":       latest_pred.get("motor_off") if latest_pred else None,
-        "control_topic":   TOPIC_CONTROL,
-    })
+    return jsonify(control_payload())
+
+
+@app.route("/api/control/history")
+def control_history():
+    """Last STOP / RUN commands (audit trail). ?limit=N"""
+    return jsonify(store.commands(min(_int_arg("limit", 20), 500)))
+
+
+@app.route("/api/thresholds")
+def thresholds():
+    """Warning / critical limits used for alerts and dashboard colours."""
+    return jsonify({k: {"warning": w, "critical": c} for k, (w, c) in THRESHOLDS.items()})
 
 
 @app.route("/api/control/resume", methods=["POST"])
@@ -663,7 +788,7 @@ def control_resume():
     who = (request.get_json(silent=True) or {}).get("operator", "unknown")
     if not controller.resume(f"MANUAL-RUN by {who}"):
         return jsonify({"error": "Could not publish RUN — MQTT not connected"}), 503
-    return jsonify({"ok": True, "control": controller.state()})
+    return jsonify({"ok": True, "control": control_payload()})
 
 
 @app.route("/api/health-check")
@@ -712,6 +837,9 @@ mqtt_client.connect_async(BROKER, PORT, 60)
 mqtt_client.loop_start()
 
 migrate_old_csv()
+_imported, _skipped = store.import_csv(CSV_FILE)
+if _imported or _skipped:
+    print(f"[DB] Imported {_imported} readings from {os.path.basename(CSV_FILE)} ({_skipped} damaged/simulated rows skipped)")
 
 if SIM_MODE in ("auto", "fallback", "always"):
     threading.Thread(target=sim_loop, daemon=True, name="synthetic-sensor").start()
@@ -724,7 +852,7 @@ if BROKER in PUBLIC_BROKERS or not MQTT_TLS:
           "readings or STOP/RUN commands. Configure backend/.env before real use.")
 print(f"[APP] Shutdown: {'✅ ENABLED' if SHUTDOWN_ENABLED else '❌ DISABLED'} → topic={TOPIC_CONTROL}"
       f" | auto-resume={'ON' if AUTO_RESUME else 'OFF'} | manual resume={'ON' if CONTROL_TOKEN else 'OFF'}")
-print(f"[APP] Log file: predictions.log")
+print(f"[APP] Log file: predictions.log | Database: {DB_PATH}")
 
 # ─────────────────────────────────────────────────────────────
 if __name__ == "__main__":

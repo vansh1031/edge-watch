@@ -1,7 +1,8 @@
-import React from 'react';
+import { SensorData, Thresholds } from '@/types/sensor';
 
 interface LiveDataTableProps {
-  data: any[]; // 🔥 relaxed type
+  data: SensorData[];
+  thresholds: Thresholds;   // from the backend — same limits as the alerts
 }
 
 const formatTime = (ts: number) => {
@@ -22,21 +23,14 @@ const columns = [
   { key: 'aucausticRMS', label: 'Acoustic' }, // 🔥 FIXED
 ] as const;
 
-function getCellColor(key: string, value: number): string {
-  if (!value) return 'text-foreground';
-
-  if (key === 'temperature' && value > 35) return 'text-red-500';
-  if (key === 'temperature' && value > 30) return 'text-yellow-400';
-
-  if (key === 'vRMSy' && value > 1.2) return 'text-yellow-400';
-
-  if (key === 'aucausticRMS' && value > 60) return 'text-red-500';
-  if (key === 'aucausticRMS' && value > 55) return 'text-yellow-400';
-
+function getCellColor(limits: Thresholds[keyof SensorData], value: number): string {
+  if (!limits || !Number.isFinite(value)) return 'text-foreground';
+  if (value >= limits.critical) return 'text-status-critical';
+  if (value >= limits.warning) return 'text-status-warning';
   return 'text-foreground';
 }
 
-const LiveDataTable = ({ data = [] }: LiveDataTableProps) => {
+const LiveDataTable = ({ data = [], thresholds }: LiveDataTableProps) => {
 
   const recent = [...data].reverse().slice(0, 15);
 
@@ -89,7 +83,7 @@ const LiveDataTable = ({ data = [] }: LiveDataTableProps) => {
                     <td
                       key={col.key}
                       className={`py-2 px-3 font-mono whitespace-nowrap ${getCellColor(
-                        col.key,
+                        thresholds[col.key as keyof SensorData],
                         Number(value)
                       )}`}
                     >

@@ -1,4 +1,4 @@
-import { SensorData, LiveData, PredictionData, ForecastData, Alert, Recommendation, ControlStatus } from '@/types/sensor';
+import { SensorData, ForecastData, Alert, RawAlert, Recommendation, ControlStatus, Thresholds } from '@/types/sensor';
 
 // Backend runs on port 5005 of the same machine that serves the dashboard,
 // so this works both on the Jetson itself and from other PCs on the network.
@@ -26,34 +26,33 @@ async function fetchWithTimeout(url: string, timeout = 5000, init?: RequestInit)
   }
 }
 
-export async function fetchLiveData(): Promise<LiveData> {
-  const res = await fetchWithTimeout(`${API_BASE}/api/live-data`);
-  if (!res.ok) throw new ApiError('Failed to fetch live data', res.status);
-  return res.json();
-}
-
-export async function fetchHistory(params?: {
-  startDate?: string;
-  endDate?: string;
+export interface HistoryQuery {
+  startMs?: number;
+  endMs?: number;
+  q?: string;
   page?: number;
   limit?: number;
-  search?: string;
-}): Promise<{ data: SensorData[]; total: number }> {
+}
+
+function historyParams(params: HistoryQuery) {
   const query = new URLSearchParams();
-  if (params?.startDate) query.set('start_date', params.startDate);
-  if (params?.endDate) query.set('end_date', params.endDate);
-  if (params?.page) query.set('page', String(params.page));
-  if (params?.limit) query.set('limit', String(params.limit));
-  if (params?.search) query.set('search', params.search);
-  const res = await fetchWithTimeout(`${API_BASE}/api/history?${query}`);
-  if (!res.ok) throw new Error('Failed to fetch history');
+  if (params.startMs !== undefined) query.set('start_ms', String(params.startMs));
+  if (params.endMs !== undefined) query.set('end_ms', String(params.endMs));
+  if (params.q) query.set('q', params.q);
+  if (params.page) query.set('page', String(params.page));
+  if (params.limit) query.set('limit', String(params.limit));
+  return query;
+}
+
+// History page: filtered + paginated on the server (real readings only)
+export async function searchHistory(params: HistoryQuery): Promise<{ data: SensorData[]; total: number }> {
+  const res = await fetchWithTimeout(`${API_BASE}/api/history/search?${historyParams(params)}`, 15000);
+  if (!res.ok) throw new ApiError('Failed to fetch history', res.status);
   return res.json();
 }
 
-export async function fetchPrediction(): Promise<PredictionData> {
-  const res = await fetchWithTimeout(`${API_BASE}/api/prediction`);
-  if (!res.ok) throw new ApiError('Failed to fetch prediction', res.status);
-  return res.json();
+export function historyExportUrl(params: Pick<HistoryQuery, 'startMs' | 'endMs'>) {
+  return `${API_BASE}/api/history/export.csv?${historyParams(params)}`;
 }
 
 export async function fetchForecast(): Promise<ForecastData> {
@@ -62,29 +61,50 @@ export async function fetchForecast(): Promise<ForecastData> {
   return res.json();
 }
 
+export function toAlert(a: RawAlert): Alert {
+  return {
+    id: String(a.id),
+    type: a.type,
+    message: String(a.message ?? ''),
+    severity: a.severity === 'critical' || a.severity === 'warning' ? a.severity : 'normal',
+    timestamp: new Date(Number(a.timestamp)),
+    simulated: Boolean(a.simulated),
+    acknowledged: Boolean(a.acknowledged),
+    ack_by: a.ack_by ?? null,
+    ack_ts: a.ack_ts ?? null,
+  };
+}
+
+// Newest first
 export async function fetchAlerts(limit = 20): Promise<Alert[]> {
   const res = await fetchWithTimeout(`${API_BASE}/api/alerts?limit=${limit}`);
   if (!res.ok) throw new Error('Failed to fetch alerts');
-  const raw: { id?: string; type?: string; message?: string; severity?: string; timestamp: number }[] = await res.json();
-  return raw
-    .map((a): Alert => ({
-      id: String(a.id ?? `${a.type}-${a.timestamp}`),
-      message: String(a.message ?? ''),
-      severity: a.severity === 'critical' || a.severity === 'warning' ? a.severity : 'normal',
-      timestamp: new Date(Number(a.timestamp)),
-    }))
-    .reverse();
+  const raw: RawAlert[] = await res.json();
+  return raw.map(toAlert);
 }
+
+export async function ackAlert(id: string, operator: string): Promise<Alert> {
+  const res = await fetchWithTimeout(`${API_BASE}/api/alerts/${id}/ack`, 5000, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ operator }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new ApiError(body.error ?? `Acknowledge failed (HTTP ${res.status})`, res.status);
+  return toAlert(body);
+}
+
+export async function fetchThresholds(): Promise<Thresholds> {
+  const res = await fetchWithTimeout(`${API_BASE}/api/thresholds`);
+  if (!res.ok) throw new ApiError('Failed to fetch thresholds', res.status);
+  return res.json();
+}
+
+export const STREAM_URL = `${API_BASE}/api/stream`;
 
 export async function fetchRecommendations(): Promise<Recommendation[]> {
   const res = await fetchWithTimeout(`${API_BASE}/api/recommendations`);
   if (!res.ok) throw new Error('Failed to fetch recommendations');
-  return res.json();
-}
-
-export async function fetchControlStatus(): Promise<ControlStatus> {
-  const res = await fetchWithTimeout(`${API_BASE}/api/control/status`);
-  if (!res.ok) throw new ApiError('Failed to fetch control status', res.status);
   return res.json();
 }
 

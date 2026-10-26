@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Search, Calendar, ChevronLeft, ChevronRight, WifiOff } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, Calendar, ChevronLeft, ChevronRight, WifiOff, Download } from 'lucide-react';
 import { SensorData } from '@/types/sensor';
-import { API_BASE } from '@/services/api';
+import { searchHistory, historyExportUrl } from '@/services/api';
 import TopBar from '@/components/dashboard/TopBar';
 
 const ITEMS_PER_PAGE = 20;
@@ -11,62 +11,64 @@ const formatDateTime = (ts: number) => {
   return d.toLocaleString('en-US', { hour12: false });
 };
 
+// "2026-10-26" → local midnight in ms (new Date("2026-10-26") would be UTC midnight)
+function localDayStart(date: string): number | undefined {
+  if (!date) return undefined;
+  const [y, m, d] = date.split('-').map(Number);
+  return new Date(y, m - 1, d).getTime();
+}
+
 const History = () => {
-  const [allData, setAllData] = useState<SensorData[]>([]);
+  const [rows, setRows] = useState<SensorData[]>([]);
+  const [total, setTotal] = useState(0);
   const [isLive, setIsLive] = useState(false);
   const [loadError, setLoadError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch(`${API_BASE}/api/history?range=all&limit=2000`)
-      .then(res => res.json())
-      .then((rows: SensorData[]) => {
-        if (!Array.isArray(rows)) throw new Error('bad response');
-        setAllData(
-          rows
-            .map(r => ({ ...r, timestamp: Number(r.timestamp), acousticRMS: Number(r.aucausticRMS ?? r.acousticRMS ?? 0) }))
-            .sort((a, b) => b.timestamp - a.timestamp),
-        );
-        setIsLive(true);
-      })
-      // No mock fallback — an empty table with an error is honest, fake rows are not
-      .catch(() => setLoadError(true));
-  }, []);
   const [search, setSearch] = useState('');
+  const [query, setQuery] = useState('');          // debounced search
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [page, setPage] = useState(1);
 
-  const filtered = useMemo(() => {
-    let result = allData;
-    if (startDate) {
-      const s = new Date(startDate).getTime();
-      result = result.filter(d => d.timestamp >= s);
-    }
-    if (endDate) {
-      const e = new Date(endDate).getTime() + 86400000;
-      result = result.filter(d => d.timestamp <= e);
-    }
-    if (search) {
-      const q = search.toLowerCase();
-      result = result.filter(d =>
-        Object.values(d).some(v => String(v).toLowerCase().includes(q))
-      );
-    }
-    return result;
-  }, [allData, search, startDate, endDate]);
+  const startMs = localDayStart(startDate);
+  const endDayStart = localDayStart(endDate);
+  const endMs = endDayStart !== undefined ? endDayStart + 86_400_000 : undefined;   // end date is inclusive
 
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  useEffect(() => {
+    const t = setTimeout(() => setQuery(search.trim()), 300);
+    return () => clearTimeout(t);
+  }, [search]);
 
-  useEffect(() => { setPage(1); }, [search, startDate, endDate]);
+  useEffect(() => { setPage(1); }, [query, startDate, endDate]);
+
+  // Filtering + paging happen on the backend (SQLite) — only one page is downloaded
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    searchHistory({ startMs, endMs, q: query, page, limit: ITEMS_PER_PAGE })
+      .then(res => {
+        if (cancelled) return;
+        setRows(res.data);
+        setTotal(res.total);
+        setIsLive(true);
+        setLoadError(false);
+      })
+      // No mock fallback — an empty table with an error is honest, fake rows are not
+      .catch(() => { if (!cancelled) setLoadError(true); })
+      .finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
+  }, [startMs, endMs, query, page]);
+
+  const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
 
   const columns = [
-    'timestamp', 'aRMSx', 'aRMSy', 'aRMSz', 'vRMSx', 'vRMSy', 'vRMSz', 'temperature', 'acousticRMS',
+    'timestamp', 'aRMSx', 'aRMSy', 'aRMSz', 'vRMSx', 'vRMSy', 'vRMSz', 'temperature', 'aucausticRMS',
   ] as const;
 
   return (
     <div className="min-h-screen bg-background">
-      <TopBar isConnected={isLive} useMock={allData.some(d => (d as SensorData & { simulated?: boolean }).simulated)} />
+      <TopBar isConnected={isLive && !loadError} useMock={false} />
 
       <main className="p-4 lg:p-6 max-w-[1600px] mx-auto space-y-6">
         <div className="flex items-center justify-between">
@@ -74,7 +76,16 @@ const History = () => {
             <span className="text-primary glow-text">History</span>
             <span className="text-muted-foreground ml-2 text-sm font-normal">Sensor Data Records</span>
           </h2>
+          <a
+            href={historyExportUrl({ startMs, endMs })}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-secondary text-foreground hover:bg-secondary/80 transition-colors"
+          >
+            <Download size={13} /> Export CSV
+          </a>
         </div>
+        <p className="text-xs text-muted-foreground -mt-4">
+          Real sensor readings stored in the database. Demo (simulated) data is never stored. Export uses the selected dates.
+        </p>
 
         {loadError && (
           <div role="alert" className="flex items-start gap-3 rounded-xl border border-status-critical/40 bg-status-critical/15 status-critical px-4 py-3">
@@ -122,20 +133,20 @@ const History = () => {
                 <tr className="border-b border-border">
                   {columns.map(col => (
                     <th key={col} className="py-2 px-3 text-left text-muted-foreground font-medium uppercase tracking-wider whitespace-nowrap">
-                      {col === 'timestamp' ? 'Time' : col}
+                      {col === 'timestamp' ? 'Time' : col === 'aucausticRMS' ? 'Acoustic' : col}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {paged.length === 0 && (
+                {rows.length === 0 && (
                   <tr>
                     <td colSpan={columns.length} className="py-8 text-center text-muted-foreground">
-                      {loadError ? 'No data — backend unreachable' : isLive ? 'No records match the filters' : 'Loading…'}
+                      {loadError ? 'No data — backend unreachable' : loading ? 'Loading…' : 'No records match the filters'}
                     </td>
                   </tr>
                 )}
-                {paged.map(row => (
+                {rows.map(row => (
                   <tr key={row.timestamp} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
                     {columns.map(col => (
                       <td key={col} className="py-2 px-3 font-mono whitespace-nowrap text-foreground">
@@ -150,7 +161,7 @@ const History = () => {
 
           <div className="flex items-center justify-between mt-4">
             <span className="text-xs text-muted-foreground">
-              Showing {filtered.length === 0 ? 0 : (page - 1) * ITEMS_PER_PAGE + 1}–{Math.min(page * ITEMS_PER_PAGE, filtered.length)} of {filtered.length}
+              Showing {total === 0 ? 0 : (page - 1) * ITEMS_PER_PAGE + 1}–{Math.min(page * ITEMS_PER_PAGE, total)} of {total.toLocaleString('en-US')}
             </span>
             <div className="flex items-center gap-2">
               <button

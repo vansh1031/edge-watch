@@ -33,3 +33,5 @@ predictions.log
 .env
 backend/site-packages/
 predictions.log.*
+edgewatch.db
+edgewatch.db-*

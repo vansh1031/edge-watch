@@ -4,20 +4,11 @@ import { toast } from 'sonner';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { ControlStatus } from '@/types/sensor';
 import { resumeMachine } from '@/services/api';
+import { readOperator, saveOperator } from '@/lib/operator';
 
 interface ControlPanelProps {
   control: ControlStatus | null;
-  onChanged: () => void;
-}
-
-const OPERATOR_KEY = 'edgewatch.operator';
-
-function readOperator() {
-  try { return localStorage.getItem(OPERATOR_KEY) ?? ''; } catch { return ''; }
-}
-
-function saveOperator(name: string) {
-  try { localStorage.setItem(OPERATOR_KEY, name); } catch { /* storage blocked */ }
+  onChanged?: (control: ControlStatus) => void;
 }
 
 function formatTime(ts: number | null) {
@@ -50,11 +41,11 @@ const ControlPanel = ({ control, onChanged }: ControlPanelProps) => {
     setBusy(true);
     setError(null);
     try {
-      await resumeMachine(token, operator.trim());
+      const updated = await resumeMachine(token, operator.trim());
       saveOperator(operator.trim());
       toast.success('RUN command sent — machine resumed');
       setOpen(false);
-      onChanged();
+      onChanged?.(updated);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Resume failed');
     } finally {

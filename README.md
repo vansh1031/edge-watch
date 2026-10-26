@@ -188,6 +188,16 @@ cp backend/.env.example backend/.env   # then edit it — never commit .env
   alert is raised. With `EDGEWATCH_SIM=auto` (default) synthetic data only runs until the first
   real reading — it never replaces a sensor that went silent (`fallback` mode does, for demos).
 
+💾 Data storage
+
+- Real readings, alerts (with who acknowledged them) and every STOP/RUN command are stored in
+  SQLite: `backend/edgewatch.db` (change with `EDGEWATCH_DB`). Simulated data is never stored.
+- On first start the old `backend/sensor_data.csv` is imported once (damaged rows are skipped);
+  the CSV is no longer written. Download readings as CSV from the History page (**Export CSV**)
+  or `GET /api/history/export.csv?start_ms=&end_ms=`.
+- Readings older than `EDGEWATCH_RETENTION_DAYS` (default 365, `0` = keep forever) are deleted hourly.
+- The dashboard receives live data over one Server-Sent Events connection: `GET /api/stream`.
+
 Run backend tests: `cd backend && python -m pytest tests`
 
 

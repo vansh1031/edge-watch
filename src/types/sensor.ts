@@ -31,6 +31,12 @@ export interface LiveData extends SensorData, DataFreshness {
   levels: Partial<Record<keyof SensorData, MachineStatus>>;  // backend thresholds per field
 }
 
+// ─── Stream heartbeat (/api/stream "status" event) ─────────────
+export interface StreamStatus extends Partial<DataFreshness> {
+  has_data: boolean;
+  control:  ControlStatus;
+}
+
 // ─── Machine control (/api/control/status) ────────────────────
 export interface ControlStatus {
   enabled:        boolean;
@@ -47,11 +53,32 @@ export interface ControlStatus {
 
 // ─── Alerts ───────────────────────────────────────────────────
 export interface Alert {
-  id:        string;
-  message:   string;
-  severity:  MachineStatus;
-  timestamp: Date;
+  id:           string;
+  type?:        string;
+  message:      string;
+  severity:     MachineStatus;
+  timestamp:    Date;
+  simulated?:   boolean;       // raised by demo data
+  acknowledged?: boolean;
+  ack_by?:      string | null;
+  ack_ts?:      number | null;
 }
+
+// Alert as the backend sends it (/api/alerts, stream "alert" event)
+export interface RawAlert {
+  id: number | string;
+  type?: string;
+  message?: string;
+  severity?: string;
+  timestamp: number;
+  simulated?: boolean;
+  acknowledged?: boolean;
+  ack_by?: string | null;
+  ack_ts?: number | null;
+}
+
+// ─── Thresholds (/api/thresholds) ─────────────────────────────
+export type Thresholds = Partial<Record<keyof SensorData, { warning: number; critical: number }>>;
 
 // ─── Anomaly ──────────────────────────────────────────────────
 export interface AnomalyResponse {
