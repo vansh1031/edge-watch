@@ -18,6 +18,12 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
+        // Machine status colours: text-status-critical, bg-status-warning/15, border-status-normal/30 …
+        status: {
+          normal: "hsl(var(--status-normal) / <alpha-value>)",
+          warning: "hsl(var(--status-warning) / <alpha-value>)",
+          critical: "hsl(var(--status-critical) / <alpha-value>)",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

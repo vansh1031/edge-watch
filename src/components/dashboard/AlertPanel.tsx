@@ -6,8 +6,8 @@ interface AlertPanelProps {
 }
 
 const severityConfig = {
-  critical: { icon: AlertCircle, className: 'status-critical bg-status-critical' },
-  warning: { icon: AlertTriangle, className: 'status-warning bg-status-warning' },
+  critical: { icon: AlertCircle, className: 'status-critical bg-status-critical/15' },
+  warning: { icon: AlertTriangle, className: 'status-warning bg-status-warning/15' },
   normal: { icon: Info, className: 'text-primary bg-primary/10' },
 };
 

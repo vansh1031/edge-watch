@@ -36,6 +36,10 @@
     --warning: 38 92% 50%;
     --warning-foreground: 220 20% 7%;
 
+    --status-normal: 142 71% 45%;
+    --status-warning: 38 92% 50%;
+    --status-critical: 0 72% 51%;
+
     --neon-blue: 205 100% 55%;
     --neon-glow: 205 100% 55%;
 
@@ -92,27 +96,15 @@
   }
 
   .status-normal {
-    color: hsl(142 71% 45%);
+    color: hsl(var(--status-normal));
   }
 
   .status-warning {
-    color: hsl(38 92% 50%);
+    color: hsl(var(--status-warning));
   }
 
   .status-critical {
-    color: hsl(0 72% 51%);
-  }
-
-  .bg-status-normal {
-    background-color: hsl(142 71% 45% / 0.15);
-  }
-
-  .bg-status-warning {
-    background-color: hsl(38 92% 50% / 0.15);
-  }
-
-  .bg-status-critical {
-    background-color: hsl(0 72% 51% / 0.15);
+    color: hsl(var(--status-critical));
   }
 
   .scrollbar-thin::-webkit-scrollbar {

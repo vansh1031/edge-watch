@@ -10,8 +10,11 @@ import ForecastChart from '@/components/dashboard/ForecastChart';
 import HealthTrend from '@/components/dashboard/HealthTrend';
 import FaultDetection from '@/components/dashboard/FaultDetection';
 import RecommendationPanel from '@/components/dashboard/RecommendationPanel';
-import { API_BASE, fetchAlerts } from '@/services/api';
-import { Alert } from '@/types/sensor';
+import ControlPanel from '@/components/dashboard/ControlPanel';
+import DataStatusBanner, { LiveState } from '@/components/dashboard/DataStatusBanner';
+import { useControlStatus } from '@/hooks/useControlStatus';
+import { API_BASE, ApiError, fetchAlerts, fetchLiveData } from '@/services/api';
+import { Alert, ForecastPoint, LiveData, SensorData } from '@/types/sensor';
 
 // ─── Chart line configs ────────────────────────────────────────
 const velocityLines = [
@@ -40,15 +43,15 @@ const RANGE_LIMITS: Record<string, number> = {
 
 const Dashboard = () => {
 
-  const [data, setData] = useState<any>({});
-  const [history, setHistory] = useState<any[]>([]);
+  const [data, setData] = useState<LiveData | null>(null);
+  const [liveState, setLiveState] = useState<LiveState>('ok');
+  const [history, setHistory] = useState<SensorData[]>([]);
   const [range, setRange] = useState("5m");
   const [rangeLoading, setRangeLoading] = useState(false);
 
   // ✅ NEW: Health History (FIX)
-  const [healthHistory, setHealthHistory] = useState<any[]>([]);
+  const [healthHistory, setHealthHistory] = useState<ForecastPoint[]>([]);
   const [alerts, setAlerts] = useState<Alert[]>([]);
-  const [isConnected, setIsConnected] = useState(false);
 
   // ─── Fetch History ──────────────────────────────────────────
   const fetchHistory = useCallback((selectedRange: string) => {
@@ -57,7 +60,7 @@ const Dashboard = () => {
 
     fetch(`${API_BASE}/api/history?range=${selectedRange}&limit=${limit}`)
       .then(res => res.json())
-      .then((res: any[]) => {
+      .then((res: SensorData[]) => {
         if (!Array.isArray(res)) return;
 
         const formatted = res
@@ -77,19 +80,15 @@ const Dashboard = () => {
   // ─── Live Data Polling ──────────────────────────────────────
   useEffect(() => {
     const fetchLive = () => {
-      fetch(`${API_BASE}/api/live-data`)
+      fetchLiveData()
         .then(res => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return res.json();
-        })
-        .then((res: any) => {
           const newPoint = {
             ...res,
             timestamp: Number(res.timestamp),
           };
 
           setData(newPoint);
-          setIsConnected(true);
+          setLiveState('ok');
 
           setHistory(prev => {
             const lastTs = prev.length > 0 ? prev[prev.length - 1].timestamp : 0;
@@ -110,8 +109,7 @@ const Dashboard = () => {
           });
         })
         .catch(err => {
-          console.error("Live error:", err);
-          setIsConnected(false);
+          setLiveState(err instanceof ApiError && err.status === 503 ? 'no-data' : 'offline');
         });
     };
 
@@ -129,12 +127,11 @@ const Dashboard = () => {
   }, []);
 
   // ─── ML Prediction Hook ─────────────────────────────────────
-  const { prediction, forecast, recommendations, isLoading } = usePredictionData(false);
+  const { prediction, forecast, recommendations, isLoading } = usePredictionData();
+  const { control, refresh: refreshControl } = useControlStatus();
 
   // ✅ NEW: Health Trend Fix (MAIN LOGIC)
   useEffect(() => {
-    console.log("Prediction:", prediction);
-
     if (prediction && typeof prediction.health_score === "number") {
       setHealthHistory(prev => [
         ...prev.slice(-50),
@@ -149,9 +146,11 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background">
 
-      <TopBar isConnected={isConnected} useMock={Boolean(data?.simulated)} />
+      <TopBar isConnected={liveState !== 'offline'} useMock={Boolean(data?.simulated)} />
 
       <main className="p-4 lg:p-6 space-y-6 max-w-[1600px] mx-auto">
+
+        <DataStatusBanner liveState={liveState} data={data} />
 
         {/* ── Time Range Selector ── */}
         <div className="flex items-center gap-3">
@@ -214,10 +213,11 @@ const Dashboard = () => {
 
         </div>
 
-        {/* ── Fault + Recommendations ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* ── Fault + Recommendations + Machine Control ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <FaultDetection data={prediction} />
           <RecommendationPanel data={recommendations} />
+          <ControlPanel control={control} onChanged={refreshControl} />
         </div>
 
         {/* ── Live Charts ── */}

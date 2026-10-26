@@ -56,10 +56,10 @@ const TopBar = ({ isConnected, useMock }: TopBarProps) => {
 
         <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${
           isConnected && !useMock
-            ? 'bg-status-normal status-normal'
+            ? 'bg-status-normal/15 status-normal'
             : useMock
-              ? 'bg-status-warning status-warning'
-              : 'bg-status-critical status-critical'
+              ? 'bg-status-warning/15 status-warning'
+              : 'bg-status-critical/15 status-critical'
         }`}>
           {isConnected && !useMock ? (
             <><Wifi size={12} /><span>Connected</span></>

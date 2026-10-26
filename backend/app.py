@@ -53,7 +53,7 @@ def _env_bool(name, default):
     return os.environ.get(name, str(default)).strip().lower() in ("1", "true", "yes", "on")
 
 # ✅ Real ML engine
-from predict import predict, predict_anomaly, MODELS_LOADED, check_thresholds
+from predict import predict, predict_anomaly, MODELS_LOADED, check_thresholds, THRESHOLDS
 
 app = Flask(__name__)
 CORS(app, origins="*", supports_credentials=True)
@@ -393,6 +393,23 @@ def sensor_age_s():
     return round(time.time() - _last_real_ts, 1) if _last_real_ts else None
 
 
+def data_freshness() -> dict:
+    """Where the current reading came from and how old it is."""
+    if latest_data.get("simulated"):
+        return {"simulated": True, "stale": False, "age_s": None}
+    age = sensor_age_s()
+    return {"simulated": False, "stale": age is not None and age >= SENSOR_TIMEOUT, "age_s": age}
+
+
+def sensor_levels(data: dict) -> dict:
+    """normal / warning / critical per field, using the same THRESHOLDS as the alerts."""
+    levels = {}
+    for field, (warn_val, crit_val) in THRESHOLDS.items():
+        val = safe_float(data.get(field))
+        levels[field] = "critical" if val >= crit_val else "warning" if val >= warn_val else "normal"
+    return levels
+
+
 def watchdog_loop():
     """Raise an alert when a sensor that was sending data goes silent."""
     offline = False
@@ -441,10 +458,7 @@ def save_to_csv(data):
 def get_live_data():
     if not latest_data:
         return jsonify({"error": "No data yet"}), 503
-    if latest_data.get("simulated"):
-        return jsonify({**latest_data, "stale": False, "age_s": None})
-    age = sensor_age_s()
-    return jsonify({**latest_data, "stale": age is not None and age >= SENSOR_TIMEOUT, "age_s": age})
+    return jsonify({**latest_data, **data_freshness(), "levels": sensor_levels(latest_data)})
 
 
 @app.route("/api/history")
@@ -479,19 +493,13 @@ def get_prediction():
     ✅ Returns full prediction including health_score.
     API Contract:
       { failure_risk, rul_hours, status, fault_type,
-        confidence, health_score, motor_off, trend }
+        confidence, health_score, motor_off, trend,
+        simulated, stale, age_s }
+    503 while no reading has arrived yet.
     """
     if not latest_data:
-        return jsonify({
-            "failure_risk": 0,
-            "rul_hours":    720,
-            "status":       "normal",
-            "fault_type":   "none",
-            "confidence":   0.5,
-            "health_score": 95.0,
-            "motor_off":    False,
-            "trend":        0.0,
-        })
+        # No reading yet — say so instead of inventing a healthy machine
+        return jsonify({"error": "No data yet"}), 503
 
     result = latest_pred if latest_pred else predict(latest_data)
 
@@ -504,6 +512,7 @@ def get_prediction():
         "health_score": result["health_score"],   # ✅ NOW INCLUDED
         "motor_off":    result.get("motor_off", False),
         "trend":        result.get("trend", 0.0),
+        **data_freshness(),
     })
 
 
@@ -622,6 +631,19 @@ def model_status():
         "shutdown_enabled":SHUTDOWN_ENABLED,
         "control_topic":   TOPIC_CONTROL,
         "control":         controller.state(),
+    })
+
+
+@app.route("/api/control/status")
+def control_status():
+    """What the dashboard control panel shows."""
+    return jsonify({
+        **controller.state(),
+        "manual_resume":   bool(CONTROL_TOKEN),
+        "mqtt_connected":  mqtt_client.is_connected(),
+        "machine_status":  latest_pred.get("status") if latest_pred else None,
+        "motor_off":       latest_pred.get("motor_off") if latest_pred else None,
+        "control_topic":   TOPIC_CONTROL,
     })
 
 

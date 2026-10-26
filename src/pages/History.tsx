@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Search, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, Calendar, ChevronLeft, ChevronRight, WifiOff } from 'lucide-react';
 import { SensorData } from '@/types/sensor';
-import { generateMockHistory } from '@/services/mockData';
 import { API_BASE } from '@/services/api';
 import TopBar from '@/components/dashboard/TopBar';
 
@@ -15,11 +14,12 @@ const formatDateTime = (ts: number) => {
 const History = () => {
   const [allData, setAllData] = useState<SensorData[]>([]);
   const [isLive, setIsLive] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     fetch(`${API_BASE}/api/history?range=all&limit=2000`)
       .then(res => res.json())
-      .then((rows: any[]) => {
+      .then((rows: SensorData[]) => {
         if (!Array.isArray(rows)) throw new Error('bad response');
         setAllData(
           rows
@@ -28,7 +28,8 @@ const History = () => {
         );
         setIsLive(true);
       })
-      .catch(() => setAllData(generateMockHistory(200)));
+      // No mock fallback — an empty table with an error is honest, fake rows are not
+      .catch(() => setLoadError(true));
   }, []);
   const [search, setSearch] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -65,7 +66,7 @@ const History = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <TopBar isConnected={isLive} useMock={!isLive || allData.some(d => (d as any).simulated)} />
+      <TopBar isConnected={isLive} useMock={allData.some(d => (d as SensorData & { simulated?: boolean }).simulated)} />
 
       <main className="p-4 lg:p-6 max-w-[1600px] mx-auto space-y-6">
         <div className="flex items-center justify-between">
@@ -74,6 +75,16 @@ const History = () => {
             <span className="text-muted-foreground ml-2 text-sm font-normal">Sensor Data Records</span>
           </h2>
         </div>
+
+        {loadError && (
+          <div role="alert" className="flex items-start gap-3 rounded-xl border border-status-critical/40 bg-status-critical/15 status-critical px-4 py-3">
+            <WifiOff size={18} className="mt-0.5 shrink-0" />
+            <div>
+              <p className="text-sm font-semibold">Could not load history</p>
+              <p className="text-xs text-foreground/80 mt-0.5">The Edge AI backend (port 5005) is unreachable. Reload the page when it is running.</p>
+            </div>
+          </div>
+        )}
 
         <div className="glow-card rounded-xl bg-card p-5">
           <div className="flex flex-col md:flex-row gap-3 mb-5">
@@ -117,6 +128,13 @@ const History = () => {
                 </tr>
               </thead>
               <tbody>
+                {paged.length === 0 && (
+                  <tr>
+                    <td colSpan={columns.length} className="py-8 text-center text-muted-foreground">
+                      {loadError ? 'No data — backend unreachable' : isLive ? 'No records match the filters' : 'Loading…'}
+                    </td>
+                  </tr>
+                )}
                 {paged.map(row => (
                   <tr key={row.timestamp} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
                     {columns.map(col => (
@@ -132,7 +150,7 @@ const History = () => {
 
           <div className="flex items-center justify-between mt-4">
             <span className="text-xs text-muted-foreground">
-              Showing {(page - 1) * ITEMS_PER_PAGE + 1}–{Math.min(page * ITEMS_PER_PAGE, filtered.length)} of {filtered.length}
+              Showing {filtered.length === 0 ? 0 : (page - 1) * ITEMS_PER_PAGE + 1}–{Math.min(page * ITEMS_PER_PAGE, filtered.length)} of {filtered.length}
             </span>
             <div className="flex items-center gap-2">
               <button

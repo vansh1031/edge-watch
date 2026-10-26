@@ -39,10 +39,16 @@ function Skeleton() {
   return <div className="h-10 w-24 bg-muted animate-pulse rounded-md" />;
 }
 
-const PredictionCard = ({ data, isLoading }: PredictionCardProps) => {
-  if (!data) return null;
+const NO_DATA_CARDS = [
+  { label: 'Failure Risk',        icon: AlertTriangle },
+  { label: 'Remaining Life',      icon: Clock },
+  { label: 'AI Predicted Status', icon: Brain },
+  { label: 'AI Confidence',       icon: TrendingUp },
+].map(c => ({ ...c, value: '--', color: 'text-muted-foreground', bg: 'bg-muted' }));
 
-  const cards = [
+const PredictionCard = ({ data, isLoading }: PredictionCardProps) => {
+  // No prediction → show empty cards ("--"), never invented values
+  const cards = !data ? NO_DATA_CARDS : [
     {
       label: 'Failure Risk',
       value: `${data.failure_risk}%`,

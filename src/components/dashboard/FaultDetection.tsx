@@ -9,11 +9,24 @@ const faultLabels: Record<string, { label: string; icon: string }> = {
   'bearing fault': { label: 'Bearing Fault', icon: '⚙️' },
   'misalignment': { label: 'Misalignment', icon: '↔️' },
   'imbalance': { label: 'Imbalance', icon: '⚖️' },
+  'overheating': { label: 'Overheating', icon: '🌡️' },
   'none': { label: 'No Fault Detected', icon: ' ' },
 };
 
 const FaultDetection = ({ data }: FaultDetectionProps) => {
-  if (!data) return null;
+  if (!data) {
+    return (
+      <div className="glow-card rounded-xl bg-card p-5">
+        <div className="flex items-center gap-2 mb-4">
+          <Shield size={16} className="text-accent" />
+          <h3 className="text-sm font-semibold text-foreground">AI Fault Detection</h3>
+        </div>
+        <p className="text-xs text-muted-foreground text-center py-6">
+          No prediction available — waiting for sensor data.
+        </p>
+      </div>
+    );
+  }
 
   const fault = faultLabels[data.fault_type] || faultLabels['none'];
   const hasFault = data.fault_type !== 'none';
@@ -60,6 +73,7 @@ const FaultDetection = ({ data }: FaultDetectionProps) => {
             {data.fault_type === 'bearing fault' && 'Bearing degradation pattern detected. Schedule inspection soon.'}
             {data.fault_type === 'misalignment' && 'Shaft misalignment indicators detected. Check coupling.'}
             {data.fault_type === 'imbalance' && 'Rotational imbalance detected. Balance check recommended.'}
+            {data.fault_type === 'overheating' && 'Temperature above normal range. Check cooling and lubrication.'}
           </p>
         </div>
       )}

@@ -1,4 +1,4 @@
-import { SensorData, AnomalyResponse, PredictionData, ForecastData, Alert, Recommendation } from '@/types/sensor';
+import { SensorData, LiveData, PredictionData, ForecastData, Alert, Recommendation, ControlStatus } from '@/types/sensor';
 
 // Backend runs on port 5005 of the same machine that serves the dashboard,
 // so this works both on the Jetson itself and from other PCs on the network.
@@ -6,22 +6,29 @@ export const API_BASE =
   import.meta.env.VITE_API_BASE_URL ||
   `${window.location.protocol}//${window.location.hostname}:5005`;
 
-async function fetchWithTimeout(url: string, timeout = 5000): Promise<Response> {
+// status 0 = backend unreachable, 503 = backend up but no sensor reading yet
+export class ApiError extends Error {
+  constructor(message: string, public status: number) {
+    super(message);
+  }
+}
+
+async function fetchWithTimeout(url: string, timeout = 5000, init?: RequestInit): Promise<Response> {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
   try {
-    const response = await fetch(url, { signal: controller.signal });
+    const response = await fetch(url, { ...init, signal: controller.signal });
     clearTimeout(id);
     return response;
   } catch {
     clearTimeout(id);
-    throw new Error('Connection failed');
+    throw new ApiError('Connection failed', 0);
   }
 }
 
-export async function fetchLiveData(): Promise<SensorData> {
+export async function fetchLiveData(): Promise<LiveData> {
   const res = await fetchWithTimeout(`${API_BASE}/api/live-data`);
-  if (!res.ok) throw new Error('Failed to fetch live data');
+  if (!res.ok) throw new ApiError('Failed to fetch live data', res.status);
   return res.json();
 }
 
@@ -43,15 +50,9 @@ export async function fetchHistory(params?: {
   return res.json();
 }
 
-export async function fetchAnomaly(): Promise<AnomalyResponse> {
-  const res = await fetchWithTimeout(`${API_BASE}/api/anomaly`);
-  if (!res.ok) throw new Error('Failed to fetch anomaly');
-  return res.json();
-}
-
 export async function fetchPrediction(): Promise<PredictionData> {
   const res = await fetchWithTimeout(`${API_BASE}/api/prediction`);
-  if (!res.ok) throw new Error('Failed to fetch prediction');
+  if (!res.ok) throw new ApiError('Failed to fetch prediction', res.status);
   return res.json();
 }
 
@@ -64,9 +65,9 @@ export async function fetchForecast(): Promise<ForecastData> {
 export async function fetchAlerts(limit = 20): Promise<Alert[]> {
   const res = await fetchWithTimeout(`${API_BASE}/api/alerts?limit=${limit}`);
   if (!res.ok) throw new Error('Failed to fetch alerts');
-  const raw: any[] = await res.json();
+  const raw: { id?: string; type?: string; message?: string; severity?: string; timestamp: number }[] = await res.json();
   return raw
-    .map(a => ({
+    .map((a): Alert => ({
       id: String(a.id ?? `${a.type}-${a.timestamp}`),
       message: String(a.message ?? ''),
       severity: a.severity === 'critical' || a.severity === 'warning' ? a.severity : 'normal',
@@ -79,4 +80,22 @@ export async function fetchRecommendations(): Promise<Recommendation[]> {
   const res = await fetchWithTimeout(`${API_BASE}/api/recommendations`);
   if (!res.ok) throw new Error('Failed to fetch recommendations');
   return res.json();
+}
+
+export async function fetchControlStatus(): Promise<ControlStatus> {
+  const res = await fetchWithTimeout(`${API_BASE}/api/control/status`);
+  if (!res.ok) throw new ApiError('Failed to fetch control status', res.status);
+  return res.json();
+}
+
+// Sends RUN to the machine. Backend refuses while the machine is still critical.
+export async function resumeMachine(token: string, operator: string): Promise<ControlStatus> {
+  const res = await fetchWithTimeout(`${API_BASE}/api/control/resume`, 5000, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Control-Token': token },
+    body: JSON.stringify({ operator }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new ApiError(body.error ?? `Resume failed (HTTP ${res.status})`, res.status);
+  return body.control;
 }
