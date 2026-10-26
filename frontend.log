@@ -1,0 +1,1229 @@
+ INFO  Accepting connections at http://localhost:45557
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  8/7/2026 5:13:22 pm 10.4.0.82 GET /
+ HTTP  8/7/2026 5:13:22 pm 10.4.0.82 Returned 200 in 106 ms
+ HTTP  8/7/2026 5:13:22 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  8/7/2026 5:13:22 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  8/7/2026 5:13:22 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  8/7/2026 5:13:22 pm 10.4.0.82 Returned 200 in 15 ms
+ HTTP  8/7/2026 5:13:23 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  8/7/2026 5:13:23 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  8/7/2026 5:13:24 pm 10.4.0.82 GET /favicon.ico
+ HTTP  8/7/2026 5:13:24 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  8/7/2026 6:21:17 pm 10.4.0.82 GET /
+ HTTP  8/7/2026 6:21:17 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  8/7/2026 6:21:17 pm 10.4.0.82 GET /
+ HTTP  8/7/2026 6:21:17 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  8/7/2026 6:21:17 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  8/7/2026 6:21:17 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  8/7/2026 6:21:17 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  8/7/2026 6:21:17 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  8/7/2026 6:21:18 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  8/7/2026 6:21:18 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  8/7/2026 6:21:19 pm 10.4.0.82 GET /favicon.ico
+ HTTP  8/7/2026 6:21:19 pm 10.4.0.82 Returned 200 in 6 ms
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 GET /
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 Returned 304 in 3 ms
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 GET /
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 Returned 304 in 2 ms
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 Returned 304 in 2 ms
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 Returned 304 in 2 ms
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  9/7/2026 11:48:25 am 10.4.0.82 Returned 304 in 2 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 GET /
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 Returned 304 in 57 ms
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 GET /
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 Returned 304 in 4 ms
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 Returned 304 in 14 ms
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 Returned 304 in 5 ms
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  9/7/2026 11:52:51 am 10.4.0.82 Returned 304 in 6 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  9/7/2026 2:38:28 pm 10.4.0.82 GET /
+ HTTP  9/7/2026 2:38:28 pm 10.4.0.82 Returned 200 in 52 ms
+ HTTP  9/7/2026 2:38:28 pm 10.4.0.82 GET /
+ HTTP  9/7/2026 2:38:28 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  9/7/2026 2:38:28 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  9/7/2026 2:38:28 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  9/7/2026 2:38:28 pm 10.4.0.82 Returned 200 in 14 ms
+ HTTP  9/7/2026 2:38:28 pm 10.4.0.82 Returned 200 in 22 ms
+ HTTP  9/7/2026 2:38:29 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  9/7/2026 2:38:29 pm 10.4.0.82 Returned 200 in 14 ms
+ HTTP  9/7/2026 2:38:29 pm 10.4.0.82 GET /favicon.ico
+ HTTP  9/7/2026 2:38:29 pm 10.4.0.82 Returned 200 in 11 ms
+ HTTP  9/7/2026 2:50:27 pm 127.0.0.1 GET /
+ HTTP  9/7/2026 2:50:27 pm 127.0.0.1 Returned 200 in 5 ms
+ HTTP  9/7/2026 2:50:28 pm 127.0.0.1 GET /
+ HTTP  9/7/2026 2:50:28 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  9/7/2026 2:50:28 pm 127.0.0.1 GET /assets/index-CNbBRI0S.js
+ HTTP  9/7/2026 2:50:28 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  9/7/2026 2:50:28 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  9/7/2026 2:50:28 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  9/7/2026 2:50:29 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  9/7/2026 2:50:29 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  9/7/2026 2:50:30 pm 127.0.0.1 GET /favicon.ico
+ HTTP  9/7/2026 2:50:30 pm 127.0.0.1 Returned 200 in 3 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 GET /
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 Returned 200 in 54 ms
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 GET /
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 Returned 304 in 5 ms
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 Returned 304 in 11 ms
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  10/7/2026 5:21:38 pm 10.4.0.82 Returned 304 in 4 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  10/7/2026 7:24:34 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 7:24:34 pm 127.0.0.1 Returned 200 in 57 ms
+ HTTP  10/7/2026 7:24:34 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 7:24:34 pm 127.0.0.1 Returned 304 in 4 ms
+ HTTP  10/7/2026 7:24:35 pm 127.0.0.1 GET /assets/index-CNbBRI0S.js
+ HTTP  10/7/2026 7:24:35 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  10/7/2026 7:24:35 pm 127.0.0.1 Returned 304 in 6 ms
+ HTTP  10/7/2026 7:24:35 pm 127.0.0.1 Returned 304 in 13 ms
+ HTTP  10/7/2026 7:24:35 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  10/7/2026 7:24:35 pm 127.0.0.1 Returned 304 in 12 ms
+ HTTP  10/7/2026 7:27:24 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 7:27:24 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  10/7/2026 7:27:24 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 7:27:24 pm 127.0.0.1 Returned 304 in 3 ms
+ HTTP  10/7/2026 7:27:24 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  10/7/2026 7:27:24 pm 127.0.0.1 GET /assets/index-CNbBRI0S.js
+ HTTP  10/7/2026 7:27:24 pm 127.0.0.1 Returned 304 in 4 ms
+ HTTP  10/7/2026 7:27:24 pm 127.0.0.1 Returned 304 in 5 ms
+ HTTP  10/7/2026 7:27:25 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  10/7/2026 7:27:25 pm 127.0.0.1 Returned 304 in 3 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 Returned 200 in 57 ms
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 Returned 304 in 3 ms
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 GET /assets/index-CNbBRI0S.js
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 Returned 304 in 6 ms
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 Returned 304 in 11 ms
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  10/7/2026 6:21:47 pm 127.0.0.1 Returned 304 in 5 ms
+ HTTP  10/7/2026 6:22:21 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 6:22:21 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  10/7/2026 6:22:21 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 6:22:21 pm 127.0.0.1 Returned 304 in 2 ms
+ HTTP  10/7/2026 6:22:22 pm 127.0.0.1 GET /assets/index-CNbBRI0S.js
+ HTTP  10/7/2026 6:22:22 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  10/7/2026 6:22:22 pm 127.0.0.1 Returned 304 in 4 ms
+ HTTP  10/7/2026 6:22:22 pm 127.0.0.1 Returned 304 in 5 ms
+ HTTP  10/7/2026 6:22:22 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  10/7/2026 6:22:22 pm 127.0.0.1 Returned 304 in 2 ms
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  10/7/2026 6:15:57 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 6:15:57 pm 127.0.0.1 Returned 200 in 72 ms
+ HTTP  10/7/2026 6:15:57 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 6:15:57 pm 127.0.0.1 Returned 304 in 3 ms
+ HTTP  10/7/2026 6:15:57 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  10/7/2026 6:15:57 pm 127.0.0.1 GET /assets/index-CNbBRI0S.js
+ HTTP  10/7/2026 6:15:57 pm 127.0.0.1 Returned 304 in 7 ms
+ HTTP  10/7/2026 6:15:57 pm 127.0.0.1 Returned 304 in 10 ms
+ HTTP  10/7/2026 6:15:58 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  10/7/2026 6:15:58 pm 127.0.0.1 Returned 304 in 5 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 Returned 200 in 74 ms
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 Returned 304 in 4 ms
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 GET /assets/index-CNbBRI0S.js
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 Returned 304 in 6 ms
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 Returned 304 in 10 ms
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  10/7/2026 5:53:44 pm 127.0.0.1 Returned 304 in 5 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  10/7/2026 5:55:15 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 5:55:15 pm 127.0.0.1 Returned 200 in 72 ms
+ HTTP  10/7/2026 5:55:15 pm 127.0.0.1 GET /
+ HTTP  10/7/2026 5:55:15 pm 127.0.0.1 Returned 304 in 3 ms
+ HTTP  10/7/2026 5:55:15 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  10/7/2026 5:55:15 pm 127.0.0.1 GET /assets/index-CNbBRI0S.js
+ HTTP  10/7/2026 5:55:15 pm 127.0.0.1 Returned 304 in 6 ms
+ HTTP  10/7/2026 5:55:15 pm 127.0.0.1 Returned 304 in 11 ms
+ HTTP  10/7/2026 5:55:16 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  10/7/2026 5:55:16 pm 127.0.0.1 Returned 304 in 5 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  21/9/2026 4:01:28 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 4:01:28 pm 10.4.0.82 Returned 200 in 44 ms
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 Returned 200 in 9 ms
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 Returned 200 in 24 ms
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 GET /favicon.ico
+ HTTP  21/9/2026 4:01:29 pm 10.4.0.82 Returned 200 in 13 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 Returned 200 in 44 ms
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 Returned 200 in 16 ms
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  21/9/2026 5:35:02 pm 10.4.0.82 Returned 200 in 13 ms
+ HTTP  21/9/2026 5:35:03 pm 10.4.0.82 GET /favicon.ico
+ HTTP  21/9/2026 5:35:03 pm 10.4.0.82 Returned 200 in 11 ms
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  21/9/2026 5:54:39 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 5:54:57 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 5:54:57 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  21/9/2026 5:54:57 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 5:54:57 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 5:54:57 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  21/9/2026 5:54:57 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  21/9/2026 5:54:57 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  21/9/2026 5:54:57 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  21/9/2026 5:54:58 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  21/9/2026 5:54:58 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  21/9/2026 6:02:13 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 6:03:18 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 6:03:18 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  21/9/2026 6:03:18 pm 10.4.0.82 GET /
+ HTTP  21/9/2026 6:03:18 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  21/9/2026 6:03:18 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  21/9/2026 6:03:18 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  21/9/2026 6:03:18 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 6:03:18 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 6:03:19 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  21/9/2026 6:03:19 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 GET /history
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 GET /favicon.ico
+ HTTP  21/9/2026 7:03:42 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  21/9/2026 7:03:47 pm 10.4.0.82 GET /history
+ HTTP  21/9/2026 7:03:47 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  21/9/2026 7:03:47 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  21/9/2026 7:03:47 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  21/9/2026 7:03:47 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  21/9/2026 7:03:47 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  21/9/2026 7:03:47 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  21/9/2026 7:03:47 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  21/9/2026 7:03:48 pm 10.4.0.82 GET /favicon.ico
+ HTTP  21/9/2026 7:03:48 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 GET /
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 GET /
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  22/9/2026 12:08:30 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 GET /
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 GET /
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 GET /assets/index-CNbBRI0S.js
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  22/9/2026 12:49:48 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/9/2026 12:49:49 pm 127.0.0.1 GET /favicon.ico
+ HTTP  22/9/2026 12:49:49 pm 127.0.0.1 Returned 200 in 2 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 GET /
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 Returned 200 in 72 ms
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 GET /
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 Returned 304 in 5 ms
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 Returned 304 in 10 ms
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  23/9/2026 2:45:38 pm 10.4.0.82 Returned 304 in 5 ms
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 GET /
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 Returned 200 in 60 ms
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 GET /
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 Returned 304 in 6 ms
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 Returned 304 in 10 ms
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  25/9/2026 12:56:16 pm 10.4.0.82 Returned 304 in 7 ms
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 GET /
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 GET /
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 Returned 304 in 5 ms
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  25/9/2026 2:33:10 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  25/9/2026 3:05:36 pm 10.4.0.82 GET /
+ HTTP  25/9/2026 3:05:36 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  25/9/2026 3:05:36 pm 10.4.0.82 GET /
+ HTTP  25/9/2026 3:05:36 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  25/9/2026 3:05:37 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  25/9/2026 3:05:37 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  25/9/2026 3:05:37 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  25/9/2026 3:05:37 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  25/9/2026 3:05:37 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  25/9/2026 3:05:37 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 GET /
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 GET /
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  25/9/2026 3:05:39 pm 10.4.0.82 Returned 304 in 2 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  28/9/2026 1:19:04 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 1:19:04 pm 10.4.0.82 Returned 200 in 56 ms
+ HTTP  28/9/2026 1:19:04 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 1:19:04 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  28/9/2026 1:19:04 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  28/9/2026 1:19:04 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  28/9/2026 1:19:04 pm 10.4.0.82 Returned 304 in 5 ms
+ HTTP  28/9/2026 1:19:04 pm 10.4.0.82 Returned 304 in 10 ms
+ HTTP  28/9/2026 1:19:05 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  28/9/2026 1:19:05 pm 10.4.0.82 Returned 304 in 4 ms
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  28/9/2026 2:00:22 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 2:00:22 pm 10.4.0.82 Returned 200 in 48 ms
+ HTTP  28/9/2026 2:00:23 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 2:00:23 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  28/9/2026 2:00:23 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  28/9/2026 2:00:23 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  28/9/2026 2:00:23 pm 10.4.0.82 Returned 304 in 6 ms
+ HTTP  28/9/2026 2:00:23 pm 10.4.0.82 Returned 304 in 10 ms
+ HTTP  28/9/2026 2:00:23 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  28/9/2026 2:00:23 pm 10.4.0.82 Returned 304 in 13 ms
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 Returned 304 in 5 ms
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 Returned 304 in 5 ms
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  28/9/2026 2:04:50 pm 10.4.0.82 Returned 304 in 2 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 Returned 200 in 66 ms
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 Returned 304 in 5 ms
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 Returned 304 in 12 ms
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  28/9/2026 3:43:26 pm 10.4.0.82 Returned 304 in 14 ms
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 Returned 304 in 5 ms
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  28/9/2026 3:53:17 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  28/9/2026 7:01:46 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 7:01:46 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  28/9/2026 7:01:46 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  28/9/2026 7:01:46 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  28/9/2026 7:01:46 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  28/9/2026 7:01:46 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  28/9/2026 7:01:47 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  28/9/2026 7:01:47 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  28/9/2026 7:01:47 pm 10.4.0.82 GET /favicon.ico
+ HTTP  28/9/2026 7:01:47 pm 10.4.0.82 Returned 200 in 13 ms
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  28/9/2026 7:20:07 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  28/9/2026 7:20:08 pm 10.4.0.82 GET /favicon.ico
+ HTTP  28/9/2026 7:20:08 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  28/9/2026 7:20:52 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 GET /
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  28/9/2026 7:35:06 pm 10.4.0.82 Returned 304 in 2 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  29/9/2026 4:11:28 pm 10.4.0.82 GET /
+ HTTP  29/9/2026 4:11:28 pm 10.4.0.82 Returned 200 in 55 ms
+ HTTP  29/9/2026 4:11:28 pm 10.4.0.82 GET /
+ HTTP  29/9/2026 4:11:28 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  29/9/2026 4:11:28 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  29/9/2026 4:11:28 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  29/9/2026 4:11:28 pm 10.4.0.82 Returned 304 in 7 ms
+ HTTP  29/9/2026 4:11:28 pm 10.4.0.82 Returned 304 in 9 ms
+ HTTP  29/9/2026 4:11:29 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  29/9/2026 4:11:29 pm 10.4.0.82 Returned 304 in 5 ms
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 GET /
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 Returned 200 in 37 ms
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 GET /
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 Returned 200 in 9 ms
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 Returned 200 in 20 ms
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  29/9/2026 6:25:28 pm 10.4.0.82 Returned 200 in 12 ms
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 GET /
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 GET /
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 GET /favicon.ico
+ HTTP  29/9/2026 7:16:45 pm 10.4.0.82 Returned 200 in 13 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 GET /
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 Returned 200 in 65 ms
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 GET /
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 Returned 304 in 7 ms
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 Returned 304 in 10 ms
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 11:41:00 am 10.4.0.82 Returned 304 in 10 ms
+ HTTP  30/9/2026 11:41:07 am 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 11:41:07 am 10.4.0.82 Returned 304 in 2 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  30/9/2026 11:47:42 am 10.4.0.82 GET /
+ HTTP  30/9/2026 11:47:42 am 10.4.0.82 Returned 200 in 42 ms
+ HTTP  30/9/2026 11:47:43 am 10.4.0.82 GET /
+ HTTP  30/9/2026 11:47:43 am 10.4.0.82 Returned 304 in 4 ms
+ HTTP  30/9/2026 11:47:43 am 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 11:47:43 am 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 11:47:43 am 10.4.0.82 Returned 304 in 6 ms
+ HTTP  30/9/2026 11:47:43 am 10.4.0.82 Returned 304 in 13 ms
+ HTTP  30/9/2026 11:47:43 am 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 11:47:43 am 10.4.0.82 Returned 304 in 6 ms
+ HTTP  30/9/2026 11:50:37 am 10.4.0.82 GET /
+ HTTP  30/9/2026 11:50:37 am 10.4.0.82 Returned 200 in 4 ms
+ HTTP  30/9/2026 11:50:37 am 10.4.0.82 GET /
+ HTTP  30/9/2026 11:50:37 am 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 11:50:37 am 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 11:50:37 am 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 11:50:37 am 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 11:50:37 am 10.4.0.82 Returned 304 in 4 ms
+ HTTP  30/9/2026 11:50:38 am 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 11:50:38 am 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 GET /
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 GET /
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 Returned 304 in 4 ms
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 11:52:22 am 10.4.0.82 Returned 304 in 1 ms
+ HTTP  30/9/2026 12:24:26 pm 127.0.0.1 GET /
+ HTTP  30/9/2026 12:24:26 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 12:58:37 pm 10.4.0.82 Returned 200 in 12 ms
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:01:18 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:05:05 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:05:05 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:05 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:05:05 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:05:05 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:05 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:06 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:05:06 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:06 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 1:05:06 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 1:05:07 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:05:08 pm 10.4.0.82 Returned 304 in 1 ms
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 1:05:09 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:07:53 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:53 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 1:07:53 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:07:53 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:07:53 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:53 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:54 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:07:54 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:07:54 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 1:07:54 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 1 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 200 in 1 ms
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:07:57 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 1 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 1 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /favicon.ico
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:07:58 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:59 pm 10.4.0.82 GET /assets/index-CNbBRI0S.js
+ HTTP  30/9/2026 1:07:59 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 1:07:59 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 1:07:59 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:07:59 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 1:07:59 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 1:13:01 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:13:01 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  30/9/2026 1:13:01 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 1:13:01 pm 10.4.0.82 Returned 200 in 2 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 Returned 200 in 70 ms
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 GET /assets/index-CvMq-ehJ.js
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 Returned 304 in 7 ms
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 Returned 200 in 19 ms
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 2:47:04 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  30/9/2026 2:49:55 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 2:49:55 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  30/9/2026 2:49:55 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 2:49:55 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 2:49:55 pm 10.4.0.82 GET /assets/index-CvMq-ehJ.js
+ HTTP  30/9/2026 2:49:55 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 2:49:55 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 2:49:55 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  30/9/2026 2:49:56 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 2:49:56 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 3:10:08 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 3:10:08 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  30/9/2026 3:10:08 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 3:10:08 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 3:10:08 pm 10.4.0.82 GET /assets/index-CvMq-ehJ.js
+ HTTP  30/9/2026 3:10:08 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 3:10:08 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 3:10:08 pm 10.4.0.82 Returned 304 in 4 ms
+ HTTP  30/9/2026 3:10:09 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 3:10:09 pm 10.4.0.82 Returned 304 in 2 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  30/9/2026 4:00:50 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 4:00:50 pm 10.4.0.82 Returned 200 in 60 ms
+ HTTP  30/9/2026 4:00:50 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 4:00:50 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 4:00:50 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 4:00:50 pm 10.4.0.82 GET /assets/index-CvMq-ehJ.js
+ HTTP  30/9/2026 4:00:50 pm 10.4.0.82 Returned 304 in 7 ms
+ HTTP  30/9/2026 4:00:50 pm 10.4.0.82 Returned 304 in 11 ms
+ HTTP  30/9/2026 4:00:51 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 4:00:51 pm 10.4.0.82 Returned 304 in 5 ms
+ HTTP  30/9/2026 4:01:01 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 4:01:01 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 4:01:01 pm 10.4.0.82 GET /assets/index-CvMq-ehJ.js
+ HTTP  30/9/2026 4:01:01 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 4:01:01 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 4:01:01 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 4:01:02 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 4:01:02 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 4:18:23 pm 10.4.0.82 GET /
+ HTTP  30/9/2026 4:18:23 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 4:18:23 pm 10.4.0.82 GET /assets/index-CvMq-ehJ.js
+ HTTP  30/9/2026 4:18:23 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  30/9/2026 4:18:23 pm 10.4.0.82 Returned 304 in 2 ms
+ HTTP  30/9/2026 4:18:23 pm 10.4.0.82 Returned 304 in 3 ms
+ HTTP  30/9/2026 4:18:24 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  30/9/2026 4:18:24 pm 10.4.0.82 Returned 304 in 3 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  6/10/2026 1:05:31 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 1:05:31 pm 127.0.0.1 Returned 200 in 71 ms
+ HTTP  6/10/2026 1:05:31 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  6/10/2026 1:05:31 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  6/10/2026 1:05:31 pm 127.0.0.1 Returned 200 in 14 ms
+ HTTP  6/10/2026 1:05:31 pm 127.0.0.1 Returned 200 in 28 ms
+ HTTP  6/10/2026 1:05:33 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  6/10/2026 1:05:33 pm 127.0.0.1 Returned 200 in 13 ms
+ HTTP  6/10/2026 1:05:33 pm 127.0.0.1 GET /favicon.ico
+ HTTP  6/10/2026 1:05:33 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  6/10/2026 1:23:22 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 1:23:22 pm 127.0.0.1 Returned 304 in 3 ms
+ HTTP  6/10/2026 1:23:22 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  6/10/2026 1:23:22 pm 127.0.0.1 Returned 304 in 2 ms
+ HTTP  6/10/2026 1:23:22 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  6/10/2026 1:23:22 pm 127.0.0.1 Returned 304 in 2 ms
+ HTTP  6/10/2026 1:23:22 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  6/10/2026 1:23:22 pm 127.0.0.1 Returned 304 in 3 ms
+ HTTP  6/10/2026 1:49:42 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 1:49:42 pm 127.0.0.1 Returned 200 in 5 ms
+ HTTP  6/10/2026 1:49:43 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  6/10/2026 1:49:43 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  6/10/2026 1:49:43 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  6/10/2026 1:49:43 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 1:49:43 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  6/10/2026 1:49:43 pm 127.0.0.1 Returned 304 in 3 ms
+ HTTP  6/10/2026 2:00:53 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 2:00:53 pm 127.0.0.1 Returned 200 in 5 ms
+ HTTP  6/10/2026 2:10:10 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 2:10:10 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 2:11:40 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 2:11:40 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  6/10/2026 2:11:40 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  6/10/2026 2:11:40 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 2:11:40 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  6/10/2026 2:11:40 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 2:11:41 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  6/10/2026 2:11:41 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 2:37:07 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 2:37:07 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 2:40:24 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 2:40:24 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 2:40:50 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 2:40:50 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  6/10/2026 2:53:48 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 2:53:48 pm 127.0.0.1 Returned 200 in 3 ms
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  6/10/2026 3:01:38 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 3:01:38 pm 127.0.0.1 Returned 200 in 49 ms
+ HTTP  6/10/2026 3:07:05 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 3:07:05 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  6/10/2026 3:07:06 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  6/10/2026 3:07:06 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  6/10/2026 3:07:06 pm 127.0.0.1 Returned 200 in 16 ms
+ HTTP  6/10/2026 3:07:06 pm 127.0.0.1 Returned 200 in 21 ms
+ HTTP  6/10/2026 3:07:06 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  6/10/2026 3:07:06 pm 127.0.0.1 Returned 200 in 9 ms
+ HTTP  6/10/2026 3:16:59 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 3:16:59 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 4:39:29 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 4:39:29 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 4:40:55 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 4:40:55 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  6/10/2026 4:43:09 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 4:43:09 pm 127.0.0.1 Returned 200 in 5 ms
+ HTTP  6/10/2026 4:43:40 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 4:43:40 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  6/10/2026 5:00:54 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 5:00:54 pm 127.0.0.1 Returned 200 in 4 ms
+                                                       INFO  Accepting connections at http://localhost:8081
+ HTTP  6/10/2026 5:25:09 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 5:25:09 pm 127.0.0.1 Returned 200 in 56 ms
+ HTTP  6/10/2026 5:26:11 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 5:26:11 pm 127.0.0.1 Returned 304 in 4 ms
+ HTTP  6/10/2026 5:26:11 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  6/10/2026 5:26:11 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  6/10/2026 5:26:11 pm 127.0.0.1 Returned 304 in 10 ms
+ HTTP  6/10/2026 5:26:11 pm 127.0.0.1 Returned 304 in 20 ms
+ HTTP  6/10/2026 5:26:12 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  6/10/2026 5:26:12 pm 127.0.0.1 Returned 304 in 5 ms
+ HTTP  6/10/2026 6:17:55 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 6:17:55 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  6/10/2026 6:46:01 pm 127.0.0.1 GET /
+ HTTP  6/10/2026 6:46:01 pm 127.0.0.1 Returned 200 in 3 ms
+                                                                                                        INFO  Accepting connections at http://localhost:8081
+ HTTP  7/10/2026 11:10:03 am 127.0.0.1 GET /
+ HTTP  7/10/2026 11:10:03 am 127.0.0.1 Returned 200 in 61 ms
+ HTTP  7/10/2026 11:10:20 am 127.0.0.1 GET /
+ HTTP  7/10/2026 11:10:20 am 127.0.0.1 Returned 200 in 4 ms
+ HTTP  7/10/2026 11:10:25 am 127.0.0.1 GET /
+ HTTP  7/10/2026 11:10:25 am 127.0.0.1 Returned 304 in 2 ms
+ HTTP  7/10/2026 11:10:25 am 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  7/10/2026 11:10:25 am 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  7/10/2026 11:10:25 am 127.0.0.1 Returned 304 in 6 ms
+ HTTP  7/10/2026 11:10:25 am 127.0.0.1 Returned 304 in 13 ms
+ HTTP  7/10/2026 11:10:26 am 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  7/10/2026 11:10:26 am 127.0.0.1 Returned 304 in 5 ms
+ HTTP  7/10/2026 11:13:13 am 127.0.0.1 GET /
+ HTTP  7/10/2026 11:13:13 am 127.0.0.1 Returned 304 in 3 ms
+ HTTP  7/10/2026 11:13:13 am 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  7/10/2026 11:13:13 am 127.0.0.1 Returned 304 in 2 ms
+ HTTP  7/10/2026 11:13:13 am 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  7/10/2026 11:13:13 am 127.0.0.1 Returned 304 in 2 ms
+ HTTP  7/10/2026 11:13:13 am 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  7/10/2026 11:13:13 am 127.0.0.1 Returned 304 in 3 ms
+ HTTP  7/10/2026 11:13:25 am 127.0.0.1 GET /
+ HTTP  7/10/2026 11:13:25 am 127.0.0.1 Returned 200 in 2 ms
+ HTTP  7/10/2026 11:18:46 am 127.0.0.1 GET /
+ HTTP  7/10/2026 11:18:46 am 127.0.0.1 Returned 304 in 2 ms
+ HTTP  7/10/2026 11:18:46 am 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  7/10/2026 11:18:46 am 127.0.0.1 Returned 304 in 3 ms
+ HTTP  7/10/2026 11:18:46 am 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  7/10/2026 11:18:46 am 127.0.0.1 Returned 304 in 2 ms
+ HTTP  7/10/2026 11:18:47 am 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  7/10/2026 11:18:47 am 127.0.0.1 Returned 304 in 1 ms
+ HTTP  7/10/2026 11:21:04 am 127.0.0.1 GET /
+ HTTP  7/10/2026 11:21:04 am 127.0.0.1 Returned 304 in 2 ms
+ HTTP  7/10/2026 11:21:04 am 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  7/10/2026 11:21:04 am 127.0.0.1 Returned 304 in 3 ms
+ HTTP  7/10/2026 11:21:04 am 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  7/10/2026 11:21:04 am 127.0.0.1 Returned 304 in 2 ms
+ HTTP  7/10/2026 11:21:04 am 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  7/10/2026 11:21:04 am 127.0.0.1 Returned 304 in 3 ms
+ HTTP  7/10/2026 12:24:57 pm 127.0.0.1 GET /
+ HTTP  7/10/2026 12:24:57 pm 127.0.0.1 Returned 304 in 2 ms
+ HTTP  7/10/2026 12:24:57 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  7/10/2026 12:24:57 pm 127.0.0.1 Returned 304 in 2 ms
+ HTTP  7/10/2026 12:24:57 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  7/10/2026 12:24:57 pm 127.0.0.1 Returned 304 in 1 ms
+ HTTP  7/10/2026 12:24:58 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  7/10/2026 12:24:58 pm 127.0.0.1 Returned 304 in 2 ms
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  7/10/2026 12:33:56 pm 127.0.0.1 GET /
+ HTTP  7/10/2026 12:33:56 pm 127.0.0.1 Returned 200 in 53 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  7/10/2026 12:45:18 pm 127.0.0.1 GET /
+ HTTP  7/10/2026 12:45:18 pm 127.0.0.1 Returned 200 in 62 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  7/10/2026 3:53:56 pm 127.0.0.1 GET /
+ HTTP  7/10/2026 3:53:56 pm 127.0.0.1 Returned 200 in 51 ms
+ HTTP  7/10/2026 3:54:30 pm 127.0.0.1 GET /
+ HTTP  7/10/2026 3:54:30 pm 127.0.0.1 Returned 304 in 3 ms
+ HTTP  7/10/2026 3:54:30 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  7/10/2026 3:54:30 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  7/10/2026 3:54:30 pm 127.0.0.1 Returned 304 in 10 ms
+ HTTP  7/10/2026 3:54:30 pm 127.0.0.1 Returned 304 in 14 ms
+ HTTP  7/10/2026 3:54:31 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  7/10/2026 3:54:31 pm 127.0.0.1 Returned 304 in 8 ms
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  7/10/2026 5:08:18 pm 127.0.0.1 GET /
+ HTTP  7/10/2026 5:08:18 pm 127.0.0.1 Returned 200 in 56 ms
+ HTTP  14/10/2026 12:48:12 pm 127.0.0.1 GET /
+ HTTP  14/10/2026 12:48:12 pm 127.0.0.1 Returned 200 in 5 ms
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  14/10/2026 12:54:44 pm 127.0.0.1 GET /
+ HTTP  14/10/2026 12:54:44 pm 127.0.0.1 Returned 200 in 55 ms
+ HTTP  14/10/2026 12:55:07 pm 127.0.0.1 GET /
+ HTTP  14/10/2026 12:55:07 pm 127.0.0.1 Returned 304 in 4 ms
+ HTTP  14/10/2026 12:55:07 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  14/10/2026 12:55:07 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  14/10/2026 12:55:07 pm 127.0.0.1 Returned 304 in 10 ms
+ HTTP  14/10/2026 12:55:07 pm 127.0.0.1 Returned 304 in 12 ms
+ HTTP  14/10/2026 12:55:08 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  14/10/2026 12:55:08 pm 127.0.0.1 Returned 304 in 5 ms
+ HTTP  14/10/2026 12:55:49 pm 127.0.0.1 GET /
+ HTTP  14/10/2026 12:55:49 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  14/10/2026 1:18:50 pm 127.0.0.1 GET /
+ HTTP  14/10/2026 1:18:50 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  14/10/2026 1:42:50 pm 10.4.0.82 GET /
+ HTTP  14/10/2026 1:42:50 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  14/10/2026 1:42:50 pm 10.4.0.82 GET /
+ HTTP  14/10/2026 1:42:50 pm 10.4.0.82 Returned 200 in 3 ms
+ HTTP  14/10/2026 1:42:50 pm 10.4.0.82 GET /assets/index-CvMq-ehJ.js
+ HTTP  14/10/2026 1:42:50 pm 10.4.0.82 Returned 200 in 2 ms
+ HTTP  14/10/2026 1:42:50 pm 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  14/10/2026 1:42:50 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  14/10/2026 1:42:51 pm 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  14/10/2026 1:42:51 pm 10.4.0.82 Returned 200 in 4 ms
+ HTTP  14/10/2026 1:42:51 pm 10.4.0.82 GET /favicon.ico
+ HTTP  14/10/2026 1:42:51 pm 10.4.0.82 Returned 200 in 5 ms
+ HTTP  14/10/2026 1:51:30 pm 127.0.0.1 GET /
+ HTTP  14/10/2026 1:51:30 pm 127.0.0.1 Returned 304 in 3 ms
+ HTTP  14/10/2026 1:51:30 pm 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  14/10/2026 1:51:30 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  14/10/2026 1:51:30 pm 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  14/10/2026 1:51:30 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  14/10/2026 1:51:30 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  14/10/2026 1:51:30 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  14/10/2026 1:51:40 pm 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  14/10/2026 1:51:40 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  14/10/2026 1:51:40 pm 127.0.0.1 GET /favicon.ico
+ HTTP  14/10/2026 1:51:40 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  14/10/2026 2:56:44 pm 127.0.0.1 GET /
+ HTTP  14/10/2026 2:56:44 pm 127.0.0.1 Returned 200 in 2 ms
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  22/10/2026 9:23:36 am 10.4.0.82 GET /assets/index-C7d2A5Uz.css
+ HTTP  22/10/2026 9:23:36 am 10.4.0.82 GET /assets/index-CvMq-ehJ.js
+ HTTP  22/10/2026 9:23:36 am 10.4.0.82 Returned 304 in 122 ms
+ HTTP  22/10/2026 9:23:36 am 10.4.0.82 Returned 304 in 34 ms
+ HTTP  22/10/2026 9:23:37 am 10.4.0.82 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  22/10/2026 9:23:37 am 10.4.0.82 Returned 304 in 8 ms
+ HTTP  22/10/2026 9:23:37 am 10.4.0.82 GET /favicon.ico
+ HTTP  22/10/2026 9:23:37 am 10.4.0.82 Returned 200 in 9 ms
+ HTTP  22/10/2026 9:23:40 am 127.0.0.1 GET /
+ HTTP  22/10/2026 9:23:40 am 127.0.0.1 Returned 200 in 6 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  22/10/2026 9:25:16 am 127.0.0.1 GET /
+ HTTP  22/10/2026 9:25:16 am 127.0.0.1 Returned 200 in 60 ms
+ HTTP  22/10/2026 10:10:06 am 127.0.0.1 GET /
+ HTTP  22/10/2026 10:10:06 am 127.0.0.1 Returned 304 in 4 ms
+ HTTP  22/10/2026 10:10:06 am 127.0.0.1 GET /assets/index-C7d2A5Uz.css
+ HTTP  22/10/2026 10:10:06 am 127.0.0.1 GET /assets/index-CvMq-ehJ.js
+ HTTP  22/10/2026 10:10:06 am 127.0.0.1 Returned 304 in 7 ms
+ HTTP  22/10/2026 10:10:06 am 127.0.0.1 Returned 304 in 11 ms
+ HTTP  22/10/2026 10:10:07 am 127.0.0.1 GET /assets/YASH-LOGO-B4qQlG7z.svg
+ HTTP  22/10/2026 10:10:07 am 127.0.0.1 Returned 304 in 4 ms
+ HTTP  22/10/2026 10:36:23 am 127.0.0.1 GET /
+ HTTP  22/10/2026 10:36:23 am 127.0.0.1 Returned 200 in 5 ms
+ HTTP  22/10/2026 10:36:24 am 127.0.0.1 GET /
+ HTTP  22/10/2026 10:36:24 am 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 10:36:24 am 127.0.0.1 GET /
+ HTTP  22/10/2026 10:36:24 am 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 10:38:41 am 127.0.0.1 GET /
+ HTTP  22/10/2026 10:38:41 am 127.0.0.1 Returned 200 in 4 ms
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  22/10/2026 10:51:58 am 127.0.0.1 GET /
+ HTTP  22/10/2026 10:51:58 am 127.0.0.1 Returned 200 in 50 ms
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  22/10/2026 10:55:44 am 127.0.0.1 GET /
+ HTTP  22/10/2026 10:55:44 am 127.0.0.1 Returned 200 in 31 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  22/10/2026 11:11:41 am 127.0.0.1 GET /
+ HTTP  22/10/2026 11:11:41 am 127.0.0.1 Returned 200 in 32 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  22/10/2026 11:57:11 am 127.0.0.1 GET /
+ HTTP  22/10/2026 11:57:11 am 127.0.0.1 Returned 200 in 31 ms
+ HTTP  22/10/2026 12:27:35 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:27:35 pm 127.0.0.1 Returned 200 in 5 ms
+ HTTP  22/10/2026 12:27:42 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:27:42 pm 127.0.0.1 Returned 200 in 3 ms
+
+ INFO  Gracefully shutting down. Please wait...
+ INFO  Accepting connections at http://localhost:8081
+ HTTP  22/10/2026 12:29:37 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:29:37 pm 127.0.0.1 Returned 200 in 32 ms
+ HTTP  22/10/2026 12:29:51 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:29:51 pm 127.0.0.1 Returned 200 in 5 ms
+ HTTP  22/10/2026 12:30:00 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:30:00 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  22/10/2026 12:30:11 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:30:11 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 12:39:37 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:39:37 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 12:39:51 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:39:51 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 12:40:11 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:40:11 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 12:40:31 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:40:31 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 12:40:51 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:40:51 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  22/10/2026 12:41:11 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:41:11 pm 127.0.0.1 Returned 200 in 6 ms
+ HTTP  22/10/2026 12:41:15 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:41:15 pm 127.0.0.1 Returned 200 in 6 ms
+ HTTP  22/10/2026 12:48:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:48:53 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 12:49:01 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 12:49:01 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:24:42 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:24:42 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:24:45 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:24:45 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:24:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:24:53 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:25:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:25:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:25:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:25:33 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:25:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:25:53 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:26:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:26:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:26:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:26:33 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:26:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:26:53 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:27:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:27:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:27:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:27:33 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:27:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:27:53 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:28:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:28:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:28:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:28:33 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:28:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:28:53 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:29:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:29:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:29:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:29:33 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:29:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:29:53 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:30:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:30:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:30:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:30:33 pm 127.0.0.1 Returned 200 in 1 ms
+ HTTP  22/10/2026 2:30:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:30:53 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:31:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:31:13 pm 127.0.0.1 Returned 200 in 1 ms
+ HTTP  22/10/2026 2:31:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:31:33 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:31:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:31:53 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:32:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:32:13 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:32:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:32:33 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:32:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:32:53 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:33:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:33:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:33:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:33:33 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:33:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:33:53 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:34:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:34:13 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:34:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:34:33 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:34:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:34:53 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:35:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:35:13 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:35:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:35:33 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:35:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:35:53 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:36:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:36:13 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:36:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:36:33 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:36:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:36:53 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:37:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:37:13 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:37:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:37:33 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:37:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:37:53 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:38:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:38:13 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:38:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:38:33 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:38:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:38:53 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:39:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:39:13 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:39:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:39:33 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:39:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:39:53 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:40:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:40:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:40:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:40:33 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:40:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:40:53 pm 127.0.0.1 Returned 200 in 4 ms
+ HTTP  22/10/2026 2:41:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:41:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:41:33 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:41:33 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:41:53 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:41:53 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:42:13 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:42:13 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:42:31 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:42:31 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:43:43 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:43:43 pm 127.0.0.1 Returned 200 in 3 ms
+ HTTP  22/10/2026 2:44:09 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:44:09 pm 127.0.0.1 Returned 200 in 2 ms
+ HTTP  22/10/2026 2:44:14 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:44:14 pm 127.0.0.1 Returned 200 in 1 ms
+ HTTP  22/10/2026 2:57:26 pm 127.0.0.1 GET /
+ HTTP  22/10/2026 2:57:26 pm 127.0.0.1 Returned 200 in 2 ms
